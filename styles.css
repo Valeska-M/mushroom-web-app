@@ -1,0 +1,1033 @@
+/*===============================================================================================
+    1. BASE-STYLES
+===============================================================================================*/
+
+/* #region base-styles */
+:root {
+    font-size: 16;
+    --font-small: 0.8rem;
+
+    --border-radius: 0.5rem;
+
+    --c-main: white;
+    --c-main-muted: #F4F1E8;
+    --c-contrast: black;
+    --c-contrast-muted: #483A28;
+    --c-accent: #C8812A;
+    --c-accent-neutral: #8A9A5B;
+    --c-accent-neutral-transparent: rgba(138,154,91,0.5);
+    --c-contrast-transparent: rgba(72,58,40,0.5);
+
+    --shadow: 0 0 0.8rem rgba(72,58,40,0.5);
+    --inset-shadow: inset 0 3px 3px rgba(72,58,40,0.5);
+
+    --gap-s: 0.5rem;
+    --gap-m: 1rem;
+    --gap-l: 2rem;
+
+    --height-header: 10rem;
+    --height-header-sticky-part: 4rem;
+    --aspect-ratio-logo: calc(1609/411);
+
+    --height-header-top-part: calc(var(--height-header) - var(--height-header-sticky-part));
+    --height-header-logo: min(calc(var(--height-header) * 0.8), calc(70vw * 0.3));
+    --width-header-logo: calc(var(--height-header-logo) * var(--aspect-ratio-logo));
+}
+
+* {
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+p {
+    overflow-wrap: break-word;
+    hyphens:auto;
+}
+
+body {
+    padding-bottom: 6rem;
+    background-color: var(--c-main-muted);
+    height: 2000px; /* only for demonstration */
+}
+
+button {
+    cursor: pointer;
+}
+
+label {
+    cursor: pointer;
+}
+/* #endregion */
+
+/*===============================================================================================
+    2. HEADER
+===============================================================================================*/
+
+/* #region layout & logo */
+#sticky-header {
+    position: sticky;
+    top: calc(-1 * var(--height-header-top-part));
+    height: var(--height-header);
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    background-color: var(--c-main);
+    box-shadow: var(--shadow);
+    transition: height 0.5s;
+    overflow: clip;
+}
+
+#header-logo {
+    height: var(--height-header-logo);
+    width: var(--width-header-logo);
+    object-fit: cover;
+    object-position: left;
+    margin-left: calc((100vw - var(--width-header-logo))/2);
+    transition: width 0.5s, height 0.5s, margin 0.5s;
+
+    animation: shrink-logo;
+    animation-timeline: scroll();
+    animation-range: exit 0 exit var(--height-header-top-part);
+    animation-fill-mode: both;
+}
+
+@keyframes shrink-logo {
+    to {
+        transform: 
+            translateY(calc(var(--height-header-top-part)/2)) 
+            scale(calc(var(--height-header-sticky-part)*0.8/var(--height-header-logo)));
+    }
+}
+/* #endregion */
+
+/* #region menu button */
+#desktop-menu-button {
+    visibility: hidden;
+    position: absolute;
+    z-index: 13;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    width: calc(var(--height-header-sticky-part) * 0.6);
+    bottom: calc(var(--height-header-sticky-part) * 0.2);
+    right: calc(var(--height-header-sticky-part) * 0.2);
+    aspect-ratio: 1;
+    background-color: var(--c-main);
+    color: var(--c-contrast-muted);
+    transition: box-shadow 0.2s, visibility 0.2s;
+}
+
+#desktop-menu-button input {
+    display: none;
+}
+
+#desktop-menu-button .material-symbols-rounded {
+    font-size: calc(var(--height-header-sticky-part) * 0.5);
+}
+
+#close-menu-symbol {
+    display: none;
+}
+
+#desktop-menu-button:has(input:checked) {
+    box-shadow: var(--inset-shadow);
+    color: var(--c-main);
+    background-color: var(--c-accent-neutral);
+}
+
+#desktop-menu-button:has(input:checked) #close-menu-symbol {
+    display: inline-flex;
+}
+
+#desktop-menu-button:has(input:checked) #open-menu-symbol {
+    display: none;
+}
+/* #endregion */
+
+/* #region main navigation */
+#main-navigation {
+    position: fixed;
+    z-index: 12;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--c-main);
+    color: var(--c-contrast-muted);
+    padding: var(--gap-s) 0;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#main-navigation .nav-list {
+    display: contents;
+}
+
+.nav-element {
+    display: inline-flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-element a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: var(--font-small);
+    text-decoration: none;
+    color: var(--c-contrast-transparent);
+    flex-shrink: 1;
+}
+
+.nav-element a:active {
+    transform: translateY(2px);
+}
+
+.nav-element .material-symbols-rounded {
+    display: flex;
+    font-size: 2rem;
+}
+
+#link-search {
+    font-weight: 700;
+    color: var(--c-contrast-muted);
+}
+
+#link-search .material-symbols-rounded {
+    font-weight: 700;
+}
+/* #endregion */
+
+/*===============================================================================================
+    3. MAIN CONTENT
+===============================================================================================*/
+
+/* #region layout */
+main {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    transition: width 0.5s, left 0.5s;
+}
+
+#search-information {
+    display: block;
+    padding: var(--gap-m) var(--gap-m) var(--gap-s) var(--gap-m);
+    text-align: center;
+}
+/* #endregion */
+
+/* #region result grid */
+#results {
+    padding: var(--gap-s);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--gap-s);
+}
+
+.mushroom {
+    position: relative;
+    z-index: 5;
+    box-shadow: var(--shadow);
+    background-color: var(--c-main);
+    border-radius: var(--border-radius);
+    color: var(--c-contrast);
+    cursor: pointer;
+}
+
+.mushroom img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.mushroom .edible, .poison {
+    margin-top: 0.2rem;
+    height: 0.3rem;
+}
+
+.mushroom .edible {
+    background-color: green;
+}
+
+.mushroom .poison {
+    background-color: red;
+}
+
+.mushroom .name {
+    font-size: 1rem;
+    font-weight: 700;
+    padding: var(--gap-s) var(--gap-m);
+    text-align: center;
+}
+
+.mushroom .synonyms {
+    font-size: var(--font-small);
+    padding: var(--gap-m);
+    padding-top: 0;
+    text-align: center;
+}
+
+.mushroom:active {
+    transform: translateY(2px);
+}
+/* #endregion*/
+
+/*===============================================================================================
+    4. POPUP: FILTER
+===============================================================================================*/
+
+/* #region buttons to open filters */
+#mobile-filter-button {
+    position: fixed;
+    z-index: 7; 
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3.5rem;
+    border-radius: 999px;
+    aspect-ratio: 1;
+    background-color: var(--c-accent);
+    color: var(--c-main);
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2, transform 0.2, visibility 0.2;
+}
+
+#mobile-filter-button .material-symbols-rounded {
+    font-size: 2rem;
+}
+
+#mobile-filter-button:active {
+    transform: translate(-50%, 2px);
+    box-shadow: 
+        var(--inset-shadow),
+        var(--shadow);
+}
+
+#desktop-filter-button {
+    position: absolute;
+    top: var(--gap-m);
+    right: 0;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    width: calc(var(--height-header-sticky-part) * 0.6);
+    aspect-ratio: 1;
+    background-color: var(--c-accent);
+    color: var(--c-main);
+    box-shadow: var(--shadow);
+    transform: translateX(100%);
+    visibility: visible;
+    transition: box-shadow 0.2s, transform 0.5s, visibility 0.5s;
+}
+
+#desktop-filter-button .material-symbols-rounded {
+    font-size: 2rem;
+}
+
+#desktop-filter-button:active {
+    transform: translate(100% 2px);
+    box-shadow: 
+        var(--inset-shadow),
+        var(--shadow);
+}
+
+#desktop-filter-button.filter-open {
+    transform: translateX(-10%);
+    box-shadow: none;
+    visibility: hidden;
+}
+/* #endregion */
+
+/* #region popup base settings & headline */
+
+#filter-popup {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 15;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    font-size: 1rem;
+    color: var(--c-contrast-muted);
+    background-color: var(--c-main);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    /* to be able to turn popup transition off in desktop mode -> no jumping */
+    --transition-on: top 0.5s, box-shadow 0.5s;
+    transition: var(--transition-on); 
+}
+
+#filter-popup.filter-open {
+    top: 3rem;
+    box-shadow: 
+        var(--shadow), 
+        0 -6rem 3rem 6rem var(--c-contrast-transparent);
+}
+
+.filter-headline {
+    position: sticky;
+    top: 0;
+    z-index: 16;
+    display: flex;
+    flex-direction: row;
+    color: var(--c-contrast-muted);
+    padding: var(--gap-m);
+    padding-bottom: var(--gap-s);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    background-color: var(--c-main);
+    font-weight: 700;
+    font-size: 1.5rem;
+    align-items: center;
+}
+
+.filter-headline p {
+    flex: 1;
+    text-align: center;
+}
+
+.filter-headline p a span {
+    color: var(--c-contrast-muted);
+    vertical-align: bottom;
+    font-size: 1.8rem;
+}
+
+#close-filter {
+    background-color: transparent;
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+#apply-filter {
+    background-color: var(--c-accent);
+    color: var(--c-main);
+    height: 3rem;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    font-size: 2rem;
+}
+
+#close-filter:active {
+    transform: translateY(2px);
+}
+
+#apply-filter:active {
+    transform: translateY(2px);
+    box-shadow: var(--inset-shadow);
+}
+/* #endregion */
+
+/* #region searchbar */
+.searchbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 20rem;
+    border-radius: 999px;
+    border-color: var(--c-contrast-muted);
+    border-style: solid;
+    overflow: hidden;
+    margin: 0.5rem auto;
+}
+
+#search-input {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    min-width: 100px;
+}
+
+.searchbar button {
+    padding: 0 0.5rem;
+    background-color: transparent;
+    height: 2rem;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+}
+
+.searchbar .material-symbols-rounded {
+    font-size: 1.5rem;
+}
+/* #endregion */
+
+/* #region category headlines */
+.filter-criteria {
+    position: relative;
+    z-index: 15;
+    background-color: var(--c-main);
+    padding: var(--gap-m);
+    padding-top: var(--gap-s);
+    overflow: auto;
+}
+
+.filter-line, .drop-down-title {
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid var(--c-contrast-transparent);
+    padding: var(--gap-s) 0;
+}
+
+.filter-line p, .drop-down-title p {
+    flex: 1;
+}
+
+.drop-down-title {
+    font-weight: 700;
+}
+
+.filter-line .switch {
+    height: 0.8rem;
+    padding: 0.2rem;
+    margin-left: var(--gap-s);
+    aspect-ratio: 2;
+    background-color: var(--c-contrast-transparent);
+    border-radius: 999px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.filter-line .switch input {
+    display: none;
+}
+
+.filter-line .switch:has(input:checked) {
+    background-color: var(--c-accent-neutral);
+    justify-content: flex-end;
+}
+
+.filter-line .switch .slider {
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background-color: var(--c-main-muted);
+}
+
+.filter-drop-down {
+    display: grid;
+    grid-template-rows: min-content 0fr;
+    transition: grid-template-rows 0.5s;
+}
+
+.drop-down-title input {
+    display:none;
+} 
+
+.drop-down-title .material-symbols-rounded {
+    height: 1rem;
+} 
+
+.drop-down-title:has(input:checked) .material-symbols-rounded {
+    transform: rotate(180deg);
+}
+
+.filter-drop-down:has(.drop-down-input:checked) {
+    grid-template-rows: min-content 1fr;
+}
+
+.filter-drop-down:has(.filter-toggle-input:checked) {
+    color: var(--c-accent-neutral);
+}
+
+.drop-down-content-wrapper {
+    overflow: hidden;
+}
+/* #endregion*/
+
+/* #region content of dropdowns: word toggle */
+
+.drop-down-content-words {
+    padding-bottom: var(--gap-s);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.word-toggle {
+    border: 1px solid var(--c-contrast-transparent);
+    border-radius: 999px;
+    padding: 0.2rem 0.5rem;
+    margin: 0.2rem;
+    background-color: var(--c-main);
+    color: var(--c-contrast-transparent);
+}
+
+.word-toggle input {
+    display: none;
+}
+
+.word-toggle:has(input:checked) {
+    background-color: var(--c-accent-neutral);
+    border-color: var(--c-accent-neutral);
+    color: var(--c-main);
+    font-weight: 700;
+}
+
+/* #endregion */
+
+/* #region content of dropdowns: grid for picture toggle */
+
+.drop-down-content-grid {
+    padding-bottom: var(--gap-s);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 3rem);
+    gap: var(--gap-s);
+}
+
+.picture-toggle input {
+    display: none;
+}
+
+.picture-toggle {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-main);
+    border: 1px solid var(--c-contrast-muted);
+    border-radius: var(--border-radius);
+    opacity: 0.5;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.picture-toggle-pic {
+    width: 90%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.picture-toggle:has(input:checked) {
+    background-color: var(--c-accent-neutral);
+    border-style: none;
+    opacity: 1;
+}
+
+.picture-toggle:has(input:checked) .picture-toggle-pic {
+    filter: brightness(0) invert(1);
+    opacity: 1;
+}
+
+/* #endregion */
+
+/* #region content of dropdowns: rows for mushroom size */
+
+.drop-down-content-rows {
+    padding-bottom: var(--gap-s);
+    display: flex;
+    flex-direction: column;
+}
+
+.mushroom-size-line {
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap-s);
+    color: var(--c-contrast-muted);
+}
+
+.mushroom-size-line p {
+    width: fit-content;
+}
+
+#mushroom-size {
+    width: 5rem;
+}
+
+#mushroom-size-slider {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#size-slider-track {
+    position: relative;
+    width: 80%;
+    height: 0.2rem;
+    display: flex;
+    align-items: center;
+    background-color: var(--c-contrast-transparent);
+    opacity: 0.5;
+    border-radius: 999px;
+}
+
+#size-slider-from, #size-slider-to {
+    position: absolute;
+    z-index: 1;
+    width: 1rem;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background-color: var(--c-contrast-muted);
+    transform: translateX(-50%);
+    cursor: grab;
+    touch-action: none;
+}
+
+#size-slider-from:active, #size-slider-to:active {
+    box-shadow: var(--shadow);
+    cursor: grabbing;
+}
+
+#size-slider-track.in-use {
+    opacity: 1;
+}
+
+#size-slider-track.in-use div {
+    background-color: var(--c-accent-neutral);
+}
+
+/* #endregion */
+
+/* #region content of dropdowns: calendar for mushroom time */
+
+.mushroom-months {
+    align-items: center;
+}
+
+#calendar {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 0 var(--gap-s) var(--gap-s) var(--gap-s);
+}
+
+.month {
+    aspect-ratio: 1;
+    background-color: transparent;
+    position: relative;
+}
+
+.month:hover::before {
+    position: absolute;
+    border-radius: 999px;
+    border: 0.2rem solid var(--c-accent-neutral);
+    content: "";
+    inset: 0%;
+}
+
+.month.chosen {
+    background-color: var(--c-accent-neutral);
+    font-weight: 700;
+    color: var(--c-main);
+    border-radius: 99px;
+}
+
+.month.hover-from::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0%;
+    border-radius: 99px 0 0 99px;
+    background-color: var(--c-accent-neutral-transparent);
+    content: "";
+}
+
+.month.hover-to {
+    background-color: var(--c-accent-neutral-transparent);
+    border-radius: 0 99px 99px 0;
+}
+
+.month.hover-in-between {
+    background-color: var(--c-accent-neutral-transparent);
+}
+
+.month.from {
+    background-color: var(--c-accent-neutral);
+    font-weight: 700;
+    color: var(--c-main);
+    border-radius: 99px 0 0 99px;
+}
+
+.month.to {
+    background-color: var(--c-accent-neutral);
+    font-weight: 700;
+    color: var(--c-main);
+    border-radius: 0 99px 99px 0;
+}
+
+.month.in-between {
+    background-color: var(--c-accent-neutral);
+    font-weight: 700;
+    color: var(--c-main);
+}
+
+#reset-months {
+    width: max-content;
+    margin-bottom: var(--gap-s);
+    padding: 0.25rem 1rem;
+    color: var(--c-contrast-muted);
+    background-color: var(--c-main);
+    border: 1px solid var(--c-contrast-muted);
+    opacity: 1;
+    border-radius: 999px;
+    transition: opacity 0.3s, height 0.3s, padding 0.3s, border 0.3s;
+}
+
+#reset-months:disabled {
+    opacity: 0;
+    cursor: default;
+    height: 0;
+    padding: 0;
+    border: 0;
+}
+/* #endregion */
+
+/* #region content of dropdowns: grid for mushroom color */
+
+.drop-down-content-color {
+    padding-bottom: var(--gap-m);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.2rem var(--gap-m);
+    align-items: center;
+}
+
+.color-palette {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.color-palette input {
+    display: none;
+}
+
+.color-palette label {
+    width: 1.5rem;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    border: 0.1rem solid var(--c-contrast);
+    opacity: 0.4;
+}
+
+.color-palette label:has(input:checked) {
+    opacity: 1;
+}
+
+.color-palette .white {
+    background-color: white;
+}
+
+.color-palette .yellow {
+    background-color: rgb(229, 225, 19);
+}
+
+.color-palette .orange {
+    background-color: rgb(227, 131, 41);
+}
+
+.color-palette .red {
+    background-color: rgb(201, 50, 50);
+}
+
+.color-palette .brown {
+    background-color: rgb(95, 61, 17);
+}
+
+.color-palette .purple {
+    background-color: rgb(127, 59, 199);
+}
+
+.color-palette .blue {
+    background-color: rgb(48, 74, 221);
+}
+
+.color-palette .green {
+    background-color: rgb(82, 160, 67);
+}
+
+.color-palette .grey {
+    background-color: rgb(150, 150, 150);
+}
+
+.color-palette .black {
+    background-color: rgb(20, 20, 20);
+}
+
+.color-palette .none {
+    display: flex;
+    align-items: center;
+}
+
+.color-palette .diagonal-line {
+    background-color: var(--c-contrast);
+    width: 100%;
+    height: 0.1rem;
+    transform: rotate(45deg);
+    transform-origin: center;
+}
+
+/* #endregion */
+
+/* #region delete filters */
+
+#reset-filter-line {
+    height: 3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+#reset-filter {
+    font-size: 1rem;
+    width: max-content;
+    height: max-content;
+    padding: 0.25rem 1rem;
+    color: var(--c-contrast-muted);
+    background-color: var(--c-main);
+    border: 1px solid var(--c-contrast-muted);
+    border-radius: 999px;
+}
+
+#reset-filter:active {
+    transform: translateY(2px);
+}
+
+/* #endregion */
+
+/*===============================================================================================
+    5. POPUP: MUSHROOM PROFILE
+===============================================================================================*/
+
+
+/*===============================================================================================
+    6. RESPONSIVE DESIGN
+===============================================================================================*/
+
+/* #region header, footer & menu */
+@media (min-width: 768px) {
+    
+    :root {
+        --height-header: 15rem;
+        --height-header-sticky-part: 6rem;
+    }
+    
+    body {
+        padding-bottom: 0;
+    }
+
+    #desktop-menu-button {
+        visibility: visible;
+    }
+
+    #desktop-menu-button:hover {
+        scale: 110%
+    }
+
+    #main-navigation {
+        position: absolute;
+        z-index: 12;
+        bottom: 0;
+        height: var(--height-header-sticky-part);
+        right: 0;
+        width: min(70%, 600px);
+        background: none;
+        padding: 0 var(--height-header-sticky-part) 0 0;
+        box-shadow: none;
+        transform: translateX(100%);
+        /* to be able to turn popup transition off in mobile mode -> no jumping */
+        --transition-on: transform 0.5s;
+        transition: var(--transition-on);
+    }
+    
+    #sticky-header:has(input:checked) #main-navigation {
+        transform: translateX(0%);
+    }
+
+    #sticky-header:has(input:checked) #header-logo {
+        width: calc(var(--width-header-logo) * 0.2); 
+        margin-left: calc(var(--height-header)*0.1);
+    }
+
+/* #endregion */
+
+/* #region filter popup */
+
+    main {
+        grid-template-columns: 25rem 1fr;
+        position: relative;
+        height: 100%;
+        left: -25rem;
+        width: calc(25rem + 100%);
+    }
+
+    main.filter-open {
+        left: 0px;
+        width: 100%;
+    }
+    
+    #mobile-filter-button {
+        visibility: hidden;
+    }
+
+    #filter-popup {
+        position: sticky;
+        top: var(--height-header-sticky-part);
+        height: calc(100vh - var(--height-header-sticky-part));
+        width: 25rem;
+        bottom: auto;
+        left: auto;
+        right: 0;
+        z-index: 8; 
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        box-shadow: none;
+        transition: box-shadow 0.5s;
+    }
+
+    #filter-popup.filter-open {
+        top: var(--height-header-sticky-part);
+        box-shadow: var(--shadow);
+    }
+
+    #close-filter:hover, #apply-filter:hover, #desktop-filter-button:hover {
+        scale: 110%
+    }
+
+    #reset-filter:hover {
+        border: 0.2rem solid var(--c-accent);
+    }
+
+    .drop-down-content-grid {
+        grid-template-columns: repeat(auto-fit, 4rem);
+    }
+
+    .color-palette {
+        gap: 0.2rem;
+    }
+    
+    .color-palette label {
+        width: 1rem;
+    }
+
+/* #endregion */
+
+/* #region results */ 
+
+    #results {
+        padding: var(--gap-m);
+        gap: var(--gap-m);
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .mushroom:hover {
+        scale: 102%;
+    }
+}
+
+/* #endregion */
+
+/* Plan:
+Suche per Enter einbauen
+Farbe der Überschriften bei Kalender und Schirmgröße reagieren lassen
+Teilweise zu einfach-auswahl machen
+rem responsive */
