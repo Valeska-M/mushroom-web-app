@@ -54,6 +54,7 @@ body {
 
 button {
     cursor: pointer;
+    color: inherit;
 }
 
 label {
@@ -405,10 +406,6 @@ main {
     margin-right: 1rem;
 }
 
-#close-filter .material-symbols-rounded {
-    color: inherit;
-}
-
 #apply-filter {
     background-color: var(--c-accent);
     color: var(--c-main);
@@ -462,7 +459,6 @@ main {
 
 .searchbar .material-symbols-rounded {
     font-size: 1.5rem;
-    color: inherit;
 }
 /* #endregion */
 
