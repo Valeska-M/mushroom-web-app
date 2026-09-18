@@ -218,6 +218,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // #region reset filters
     // ==========================================================================================
     const resetButton = document.querySelector('#reset-filter');
+    const rareMushrooms = document.querySelector('#rare-switch input');
+    const dropDownInput = document.querySelectorAll('.drop-down-input'); // are checked if the drop down menu is open
 
     function resetFilter() {
         // reset search field
@@ -239,11 +241,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // set "rare mushrooms" to checked
-        const rareMushrooms = document.querySelector('#rare-switch input');
         rareMushrooms.checked = true;
 
         // collapse sections
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        dropDownInput.forEach(checkbox => {
+            checkbox.checked = false;
+        })
     }
 
     resetButton.addEventListener('click', resetFilter);
@@ -273,6 +276,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     isMobile.addEventListener('change', mediaChange);
+    
+    if(!isMobile.matches) {
+       openFilterPopup(); //start with filters open in desktop mode
+    };
+
     // #endregion
 
     // ==========================================================================================
