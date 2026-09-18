@@ -405,6 +405,10 @@ main {
     margin-right: 1rem;
 }
 
+#close-filter .material-symbols-rounded {
+    color: inherit;
+}
+
 #apply-filter {
     background-color: var(--c-accent);
     color: var(--c-main);
@@ -458,6 +462,7 @@ main {
 
 .searchbar .material-symbols-rounded {
     font-size: 1.5rem;
+    color: inherit;
 }
 /* #endregion */
 
@@ -535,7 +540,15 @@ main {
     grid-template-rows: min-content 1fr;
 }
 
-.filter-drop-down:has(.filter-toggle-input:checked) {
+.filter-drop-down:has(.filter-toggle-input:checked) { /* change color of headline if filter is used */
+    color: var(--c-accent-neutral);
+}
+
+.filter-drop-down:has(#size-slider-track.in-use) { /* change color of headline if filter is used */
+    color: var(--c-accent-neutral);
+}
+
+.filter-drop-down:has(.month.to) { /* change color of headline if filter is used */
     color: var(--c-accent-neutral);
 }
 
@@ -789,6 +802,7 @@ main {
     grid-template-columns: 1fr 2fr;
     gap: 1.2rem var(--gap-m);
     align-items: center;
+    color: var(--c-contrast-muted);
 }
 
 .color-palette {
