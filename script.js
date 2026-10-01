@@ -5,20 +5,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================================================================
     // #region handle visibility of filter popup
     // ==========================================================================================
-    const main = document.querySelector('#main-content');
+    const mushroomSearch = document.querySelector('#mushroom-search');
     const filterPopup = document.querySelector('#filter-popup');
     const mobileFilterButton = document.querySelector('#mobile-filter-button');
     const desktopFilterButton = document.querySelector('#desktop-filter-button');
     const closeFilter = document.querySelector('#close-filter');
 
     function openFilterPopup() {
-        main.classList.add('filter-open');
+        mushroomSearch.classList.add('filter-open');
         desktopFilterButton.classList.add('filter-open');
         filterPopup.classList.add('filter-open');
     }
 
     function closeFilterPopup() {
-        main.classList.remove('filter-open');
+        mushroomSearch.classList.remove('filter-open');
         desktopFilterButton.classList.remove('filter-open');
         filterPopup.classList.remove('filter-open');
     }
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // #endregion
 
     // ==========================================================================================
-    // #region Delete search input
+    // #region delete search input
     // ==========================================================================================
     const searchInput = document.querySelector('#search-input');
     const deleteInput = document.querySelector('#delete-input');
@@ -327,4 +327,53 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // #endregion
 
+    // ==========================================================================================
+    // #region handle mushroom profile
+    // ==========================================================================================
+
+    // change between search and profile
+    const mushroomProfile = document.querySelector('#mushroom-profile');
+    const mushroomTiles = document.querySelectorAll('.mushroom');
+    const closeProfileButton = document.querySelector('#close-profile');
+    let searchScrollPosition = 0;
+
+    function openProfile() {
+        searchScrollPosition = window.scrollY;
+        mushroomSearch.hidden = true;
+        mushroomProfile.hidden = false;
+        window.scrollTo(0, 0);
+    }
+
+    function closeProfile() {
+        mushroomSearch.hidden = false;
+        mushroomProfile.hidden = true;
+        window.scrollTo(0, searchScrollPosition);
+    }
+
+    mushroomTiles.forEach(tile => tile.addEventListener('click', openProfile));
+    closeProfileButton.addEventListener('click', closeProfile);
+
+    // handle visibility of gallery arrows
+    const galleryPictures = document.querySelector('#gallery-pictures');
+    const galleryArrowL = document.querySelector('#gallery-arrow-l');
+    const galleryArrowR = document.querySelector('#gallery-arrow-r');
+
+    function handleArrowVisibility() {
+        const scrollPosition = galleryPictures.scrollLeft;
+        const maxScroll = galleryPictures.scrollWidth - galleryPictures.clientWidth - 3;
+        if (scrollPosition === 0) {
+            galleryArrowL.style.opacity = 0;
+            galleryArrowR.style.opacity = 1;
+        } else if (scrollPosition >= maxScroll) {
+            galleryArrowL.style.opacity = 1;
+            galleryArrowR.style.opacity = 0;
+        } else {
+            galleryArrowL.style.opacity = 1;
+            galleryArrowR.style.opacity = 1;
+        }
+    }
+
+    galleryPictures.addEventListener('scroll', handleArrowVisibility);
+
+    // #endregion
 });

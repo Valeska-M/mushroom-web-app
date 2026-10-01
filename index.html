@@ -7,7 +7,7 @@
    <meta name="Suchplattform für Pilze" content="Identifiziere heimische Pilzarten anhand ihrer Beschreibung und Bilder">
    <title>Pilzsuche</title>
    <link rel="icon" href="assets/icons/logo-simpel.png">
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded&icon_names=arrow_back_ios,close,groups,info,keyboard_arrow_down,menu,search,tune" />
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded&icon_names=arrow_back_ios,close,groups,info,keyboard_arrow_down,menu,search,single_arrow,tune" />
    <link rel="stylesheet" href="styles.css">
 </head>
 <!-- #endregion -->
@@ -50,1076 +50,1178 @@
 <!-- #endregion -->
 
 <!-- #region filter-popup -->
-    <main id="main-content"> 
+    <main id="content"> 
         
-        <aside id="filter-popup"> 
-            <button id="desktop-filter-button">
-                <span class="material-symbols-rounded" type="button" aria-label="Filter">tune</span>
-            </button>
-                            
-            <div class="filter-headline">
-                <button id="close-filter" type="button" aria-label="Filter schließen">
-                    <span class="material-symbols-rounded">close</span>
+        <section id="mushroom-search">
+            <aside id="filter-popup"> 
+                <button id="desktop-filter-button">
+                    <span class="material-symbols-rounded" type="button" aria-label="Filter">tune</span>
                 </button>
-                <p>Filter
-                    <a id="link-filter-info" href="info.html" target="_blank">
-                        <span class="material-symbols-rounded">info</span>
-                    </a>
-                </p>
-                <button id="apply-filter" type="button" aria-label="Filter anwenden">
-                    <span class="material-symbols-rounded">search</span>
-                </button>
-            </div>
-
-            <section class="filter-criteria">
-                <div class="searchbar">
-                    <input  id="search-input" type="text" placeholder="Pilzart | Gattung">
-                    <button id="delete-input" type="button" aria-label="löschen">
+                                
+                <div class="filter-headline">
+                    <button id="close-filter" type="button" aria-label="Filter schließen">
                         <span class="material-symbols-rounded">close</span>
+                    </button>
+                    <p>Filter
+                        <a id="link-filter-info" href="info.html" target="_blank">
+                            <span class="material-symbols-rounded">info</span>
+                        </a>
+                    </p>
+                    <button id="apply-filter" type="button" aria-label="Filter anwenden">
+                        <span class="material-symbols-rounded">search</span>
                     </button>
                 </div>
 
-                <label class="filter-line">
-                    <p>Lateinische Namen anzeigen</p>
-                    <div class="switch" id="latin-switch">
-                        <input 
-                            type="checkbox" 
-                            class="filter-toggle-input"
-                            data-filter="latein"
-                            data-value="true">
-                        <span class="slider"></span>
+                <section class="filter-criteria">
+                    <div class="searchbar">
+                        <input  id="search-input" type="text" placeholder="Pilzart | Gattung">
+                        <button id="delete-input" type="button" aria-label="löschen">
+                            <span class="material-symbols-rounded">close</span>
+                        </button>
                     </div>
-                </label>
 
-                <label class="filter-line">
-                    <p>Auch seltene Pilze anzeigen</p>
-                    <div class="switch" id="rare-switch">
-                        <input 
-                            type="checkbox" checked 
-                            class="filter-toggle-input"
-                            data-filter="selten"
-                            data-value="true">
-                        <span class="slider"></span>
-                    </div>
-                </label>
-
-                <div class="filter-drop-down">
-                    <label class="drop-down-title">
-                        <p>Essbarkeit</p>
-                        <input 
-                            class ="drop-down-input" type="checkbox">
-                        <span class="material-symbols-rounded">keyboard_arrow_down</span>
-                    </label>
-                    <div class="drop-down-content-wrapper">
-                        <div class="drop-down-content-grid">
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="speisewert"
-                                    data-value="hervorragend">
-                                <img class="picture-toggle-pic" src="assets/icons/essen-gut.png" title="Hervorragender Speisepilz">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="speisewert"
-                                    data-value="essbar">
-                                <img class="picture-toggle-pic" src="assets/icons/essen-essbar.png" title="Essbar">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="speisewert"
-                                    data-value="ungeniessbar">
-                                <img class="picture-toggle-pic" src="assets/icons/essen-ungeniessbar.png" title="Ungenießbar">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="speisewert"
-                                    data-value="giftig">
-                                <img class="picture-toggle-pic" src="assets/icons/essen-giftig.png" title="Giftig">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="speisewert"
-                                    data-value="toedlich">
-                                <img class="picture-toggle-pic" src="assets/icons/essen-toedlich.png" title="Tödlich giftig!">
-                            </label>
+                    <label class="filter-line">
+                        <p>Lateinische Namen anzeigen</p>
+                        <div class="switch" id="latin-switch">
+                            <input 
+                                type="checkbox" 
+                                class="filter-toggle-input"
+                                data-filter="latein"
+                                data-value="true">
+                            <span class="slider"></span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="filter-drop-down">
-                    <label class="drop-down-title">
-                        <p>Hauptmerkmal | Familie | Gattung</p>
-                        <input class ="drop-down-input" type="checkbox">
-                        <span class="material-symbols-rounded">keyboard_arrow_down</span>
                     </label>
-                    <div class="drop-down-content-wrapper">
-                        <div class="drop-down-content-grid">
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="gattung"
-                                    data-value="roehren">
-                                <img class="picture-toggle-pic" src="assets/icons/gattung-roehren.png" title="Röhrenpilze, Porenpilze, porlingsähnliche Pilze">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="gattung"
-                                    data-value="lamellen">
-                                <img class="picture-toggle-pic" src="assets/icons/gattung-lamellen.png" title="Lamellenpilze, Blätterpilze, Leistenpilze">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="gattung"
-                                    data-value="stacheln">
-                                <img class="picture-toggle-pic" src="assets/icons/gattung-stacheln.png" title="Pilz hat Stacheln, Stoppeln, hervortretende Erhebungen">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="gattung"
-                                    data-value="kugel">
-                                <img class="picture-toggle-pic" src="assets/icons/gattung-kugel.png" title="Kugelartige und halbkugelartige Pilze (z.B. Bovisten, Becherlinge, Hexeneier)">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="gattung"
-                                    data-value="keule">
-                                <img class="picture-toggle-pic" src="assets/icons/gattung-keule.png" title="Pilz ist keulen-, zungen- oder korallenartig">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="gattung"
-                                    data-value="weich">
-                                <img class="picture-toggle-pic" src="assets/icons/gattung-weich.png" title="Pilz ist gallertartig oder sehr weich">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="gattung"
-                                    data-value="flechte">
-                                <img class="picture-toggle-pic" src="assets/icons/gattung-flechte.png" title="Alle Flechten (Lichten)">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="gattung"
-                                    data-value="sonstiges">
-                                <img class="picture-toggle-pic" src="assets/icons/gattung-sonstiges.png" title="Sonstige Pilze wie Rindenpilze, Schichtpilze, ... sowie pilzähnliche Pflanzen">
-                            </label>
+
+                    <label class="filter-line">
+                        <p>Auch seltene Pilze anzeigen</p>
+                        <div class="switch" id="rare-switch">
+                            <input 
+                                type="checkbox" checked 
+                                class="filter-toggle-input"
+                                data-filter="selten"
+                                data-value="true">
+                            <span class="slider"></span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="filter-drop-down">
-                    <label class="drop-down-title">
-                        <p>Hut | Fruchtkörper</p>
-                        <input class ="drop-down-input" type="checkbox">
-                        <span class="material-symbols-rounded">keyboard_arrow_down</span>
                     </label>
-                    <div class="drop-down-content-wrapper">
-                        <div class="drop-down-content-rows">
+
+                    <div class="filter-drop-down">
+                        <label class="drop-down-title">
+                            <p>Essbarkeit</p>
+                            <input 
+                                class ="drop-down-input" type="checkbox">
+                            <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                        </label>
+                        <div class="drop-down-content-wrapper">
                             <div class="drop-down-content-grid">
                                 <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hut"
-                                        data-value="trichter">
-                                    <img class="picture-toggle-pic" src="assets/icons/hut-trichter.png" title="Der Fruchtkörper ist trichterförmig, vertieft, eingedellt, genabelt">
+                                        data-filter="speisewert"
+                                        data-value="hervorragend">
+                                    <img class="picture-toggle-pic" src="assets/icons/essen-gut.png" title="Hervorragender Speisepilz">
                                 </label>
                                 <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hut"
-                                        data-value="buckel">
-                                    <img class="picture-toggle-pic" src="assets/icons/hut-buckel.png" title="Der Fruchtkörper ist spitzkegelig, buckelig">
+                                        data-filter="speisewert"
+                                        data-value="essbar">
+                                    <img class="picture-toggle-pic" src="assets/icons/essen-essbar.png" title="Essbar">
                                 </label>
                                 <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hut"
-                                        data-value="schirm">
-                                    <img class="picture-toggle-pic" src="assets/icons/hut-schirm.png" title="Der Fruchtkörper ist schirmförmig, flach">
+                                        data-filter="speisewert"
+                                        data-value="ungeniessbar">
+                                    <img class="picture-toggle-pic" src="assets/icons/essen-ungeniessbar.png" title="Ungenießbar">
                                 </label>
                                 <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hut"
-                                        data-value="halbkugel">
-                                    <img class="picture-toggle-pic" src="assets/icons/hut-halbkugel.png" title="Der Fruchtkörper ist halbkugelig oder hat eine sonstige Hutform">
+                                        data-filter="speisewert"
+                                        data-value="giftig">
+                                    <img class="picture-toggle-pic" src="assets/icons/essen-giftig.png" title="Giftig">
                                 </label>
                                 <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hut"
-                                        data-value="gerieft">
-                                    <img class="picture-toggle-pic" src="assets/icons/hut-gerieft.png" title="Der Fruchtkörper ist gerieft, gestreift, gerillt oder auch rissig">
+                                        data-filter="speisewert"
+                                        data-value="toedlich">
+                                    <img class="picture-toggle-pic" src="assets/icons/essen-toedlich.png" title="Tödlich giftig!">
                                 </label>
                             </div>
-                            <div class="mushroom-size-line">
-                                <p>Durchmesser:</p>
-                                <p id="mushroom-size">alle Werte</p>
-                                <div id="mushroom-size-slider">
-                                    <div id="size-slider-track">
-                                        <div id="size-slider-from"></div>
-                                        <div id="size-slider-to"></div> 
+                        </div>
+                    </div>
+
+                    <div class="filter-drop-down">
+                        <label class="drop-down-title">
+                            <p>Hauptmerkmal | Familie | Gattung</p>
+                            <input class ="drop-down-input" type="checkbox">
+                            <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                        </label>
+                        <div class="drop-down-content-wrapper">
+                            <div class="drop-down-content-grid">
+                                <label class="picture-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="gattung"
+                                        data-value="roehren">
+                                    <img class="picture-toggle-pic" src="assets/icons/gattung-roehren.png" title="Röhrenpilze, Porenpilze, porlingsähnliche Pilze">
+                                </label>
+                                <label class="picture-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="gattung"
+                                        data-value="lamellen">
+                                    <img class="picture-toggle-pic" src="assets/icons/gattung-lamellen.png" title="Lamellenpilze, Blätterpilze, Leistenpilze">
+                                </label>
+                                <label class="picture-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="gattung"
+                                        data-value="stacheln">
+                                    <img class="picture-toggle-pic" src="assets/icons/gattung-stacheln.png" title="Pilz hat Stacheln, Stoppeln, hervortretende Erhebungen">
+                                </label>
+                                <label class="picture-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="gattung"
+                                        data-value="kugel">
+                                    <img class="picture-toggle-pic" src="assets/icons/gattung-kugel.png" title="Kugelartige und halbkugelartige Pilze (z.B. Bovisten, Becherlinge, Hexeneier)">
+                                </label>
+                                <label class="picture-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="gattung"
+                                        data-value="keule">
+                                    <img class="picture-toggle-pic" src="assets/icons/gattung-keule.png" title="Pilz ist keulen-, zungen- oder korallenartig">
+                                </label>
+                                <label class="picture-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="gattung"
+                                        data-value="weich">
+                                    <img class="picture-toggle-pic" src="assets/icons/gattung-weich.png" title="Pilz ist gallertartig oder sehr weich">
+                                </label>
+                                <label class="picture-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="gattung"
+                                        data-value="flechte">
+                                    <img class="picture-toggle-pic" src="assets/icons/gattung-flechte.png" title="Alle Flechten (Lichten)">
+                                </label>
+                                <label class="picture-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="gattung"
+                                        data-value="sonstiges">
+                                    <img class="picture-toggle-pic" src="assets/icons/gattung-sonstiges.png" title="Sonstige Pilze wie Rindenpilze, Schichtpilze, ... sowie pilzähnliche Pflanzen">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-drop-down">
+                        <label class="drop-down-title">
+                            <p>Hut | Fruchtkörper</p>
+                            <input class ="drop-down-input" type="checkbox">
+                            <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                        </label>
+                        <div class="drop-down-content-wrapper">
+                            <div class="drop-down-content-rows">
+                                <div class="drop-down-content-grid">
+                                    <label class="picture-toggle">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hut"
+                                            data-value="trichter">
+                                        <img class="picture-toggle-pic" src="assets/icons/hut-trichter.png" title="Der Fruchtkörper ist trichterförmig, vertieft, eingedellt, genabelt">
+                                    </label>
+                                    <label class="picture-toggle">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hut"
+                                            data-value="buckel">
+                                        <img class="picture-toggle-pic" src="assets/icons/hut-buckel.png" title="Der Fruchtkörper ist spitzkegelig, buckelig">
+                                    </label>
+                                    <label class="picture-toggle">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hut"
+                                            data-value="schirm">
+                                        <img class="picture-toggle-pic" src="assets/icons/hut-schirm.png" title="Der Fruchtkörper ist schirmförmig, flach">
+                                    </label>
+                                    <label class="picture-toggle">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hut"
+                                            data-value="halbkugel">
+                                        <img class="picture-toggle-pic" src="assets/icons/hut-halbkugel.png" title="Der Fruchtkörper ist halbkugelig oder hat eine sonstige Hutform">
+                                    </label>
+                                    <label class="picture-toggle">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hut"
+                                            data-value="gerieft">
+                                        <img class="picture-toggle-pic" src="assets/icons/hut-gerieft.png" title="Der Fruchtkörper ist gerieft, gestreift, gerillt oder auch rissig">
+                                    </label>
+                                </div>
+                                <div class="mushroom-size-line">
+                                    <p>Durchmesser:</p>
+                                    <p id="mushroom-size">alle Werte</p>
+                                    <div id="mushroom-size-slider">
+                                        <div id="size-slider-track">
+                                            <div id="size-slider-from"></div>
+                                            <div id="size-slider-to"></div> 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="filter-drop-down">
-                    <label class="drop-down-title">
-                        <p>Wuchsort und weitere Eigenschaften</p>
-                        <input class ="drop-down-input" type="checkbox">
-                        <span class="material-symbols-rounded">keyboard_arrow_down</span>
-                    </label>
-                    <div class="drop-down-content-wrapper">
-                        <div class="drop-down-content-grid">
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="weiteres"
-                                    data-value="holz">
-                                <img class="picture-toggle-pic" src="assets/icons/weiteres-holz.png" title="Pilz wächst auf Holz, Pflanzen oder toten Tieren">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="weiteres"
-                                    data-value="erde">
-                                <img class="picture-toggle-pic" src="assets/icons/weiteres-erde.png" title="Pilz wächst auf Erde, Boden oder Humus">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="weiteres"
-                                    data-value="gras">
-                                <img class="picture-toggle-pic" src="assets/icons/weiteres-gras.png" title="Pilz wächst auf der Wiese, im Rasen, im Park oder Garten">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="weiteres"
-                                    data-value="bueschel">
-                                <img class="picture-toggle-pic" src="assets/icons/weiteres-bueschel.png" title="Pilz wächst büschelig - vorsichtig verwenden">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="weiteres"
-                                    data-value="hart">
-                                <img class="picture-toggle-pic" src="assets/icons/weiteres-hart.png" title="Pilz ist hart, holzig oder sehr zäh. Bei Flechten: wachsen auf Gestein oder Felsen">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="weiteres"
-                                    data-value="hygrophan">
-                                <img class="picture-toggle-pic" src="assets/icons/weiteres-hygrophan.png" title="Fruchtkörper ist ausbleichend (hygrophan)">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="weiteres"
-                                    data-value="schmierig">
-                                <img class="picture-toggle-pic" src="assets/icons/weiteres-schmierig.png" title="Fruchtkörper ist schmierig">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="weiteres"
-                                    data-value="wurzel">
-                                <img class="picture-toggle-pic" src="assets/icons/weiteres-wurzel.png" title="Fruchtkörper wurzelt oder ist striegelig">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="filter-drop-down">
-                    <label class="drop-down-title">
-                        <p>Sporengeber</p>
-                        <input class ="drop-down-input" type="checkbox">
-                        <span class="material-symbols-rounded">keyboard_arrow_down</span>
-                    </label>
-                    <div class="drop-down-content-wrapper">
-                        <div class="drop-down-content-grid">
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="sporengeber"
-                                    data-value="angewachsen">
-                                <img class="picture-toggle-pic" src="assets/icons/sporen-angewachsen.png" title="Angewachsen">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="sporengeber"
-                                    data-value="herablaufend">
-                                <img class="picture-toggle-pic" src="assets/icons/sporen-herablaufend.png" title="Am Stiel herablaufend">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="sporengeber"
-                                    data-value="frei">
-                                <img class="picture-toggle-pic" src="assets/icons/sporen-frei.png" title="Frei">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="sporengeber"
-                                    data-value="milch">
-                                <img class="picture-toggle-pic" src="assets/icons/sporen-milch.png" title="Bei Verletzung tritt milchartige klare, weiße oder rote Flüssigkeit aus">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="sporengeber"
-                                    data-value="eng">
-                                <img class="picture-toggle-pic" src="assets/icons/sporen-eng.png" title="Lamellen stehen eng/dicht">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="sporengeber"
-                                    data-value="gegabelt">
-                                <img class="picture-toggle-pic" src="assets/icons/sporen-gegabelt.png" title="Lamellen oder Fruchtkörper sind gegabelt oder queraderig">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="sporengeber"
-                                    data-value="gesaegt">
-                                <img class="picture-toggle-pic" src="assets/icons/sporen-gesaegt.png" title="Lamellenschneiden sind gesägt oder wellig">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="filter-drop-down">
-                    <label class="drop-down-title">
-                        <p>Stiel</p>
-                        <input class ="drop-down-input" type="checkbox">
-                        <span class="material-symbols-rounded">keyboard_arrow_down</span>
-                    </label>
-                    <div class="drop-down-content-wrapper">
-                        <div class="drop-down-content-grid">
-                            <label class="picture-toggle">
-                                <input
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="stiel"
-                                    data-value="ring">
-                                <img class="picture-toggle-pic" src="assets/icons/stiel-ring.png" title="Ring am Stiel, auch angedeuteter Ring durch Sporenwurf">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="stiel"
-                                    data-value="brüchig">
-                                <img class="picture-toggle-pic" src="assets/icons/stiel-bruechig.png" title="Brüchig, querbrüchig">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="stiel"
-                                    data-value="knolle">
-                                <img class="picture-toggle-pic" src="assets/icons/stiel-knolle.png" title="Knollig">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="stiel"
-                                    data-value="faserig">
-                                <img class="picture-toggle-pic" src="assets/icons/stiel-faserig.png" title="Das Fleisch am Stiel ist faserig, längsfaserig">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="stiel"
-                                    data-value="netz">
-                                <img class="picture-toggle-pic" src="assets/icons/stiel-netz.png" title="Mit Netzzeichnung">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="stiel"
-                                    data-value="flockig">
-                                <img class="picture-toggle-pic" src="assets/icons/stiel-flockig.png" title="Flocken, Schuppen am Stiel oder auch am Hut">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="stiel"
-                                    data-value="genattert">
-                                <img class="picture-toggle-pic" src="assets/icons/stiel-genattert.png" title="Natterung, Flecken bis hin zu Grübchen am Stiel">
-                            </label>
-                            <label class="picture-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="stiel"
-                                    data-value="hohl">
-                                <img class="picture-toggle-pic" src="assets/icons/stiel-hohl.png" title="Hohler Stiel oder wattig hohler Stiel">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="filter-drop-down">
-                    <label class="drop-down-title">
-                        <p>Farbe</p>
-                        <input class ="drop-down-input" type="checkbox">
-                        <span class="material-symbols-rounded">keyboard_arrow_down</span>
-                    </label>
-                    <div class="drop-down-content-wrapper">
-                        <div class="drop-down-content-color">
-                            <p>Hut</p>
-                            <div class="color-palette">
-                                <label class="white">
+                    <div class="filter-drop-down">
+                        <label class="drop-down-title">
+                            <p>Wuchsort und weitere Eigenschaften</p>
+                            <input class ="drop-down-input" type="checkbox">
+                            <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                        </label>
+                        <div class="drop-down-content-wrapper">
+                            <div class="drop-down-content-grid">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hutfarbe"
-                                        data-value="weiss">
+                                        data-filter="weiteres"
+                                        data-value="holz">
+                                    <img class="picture-toggle-pic" src="assets/icons/weiteres-holz.png" title="Pilz wächst auf Holz, Pflanzen oder toten Tieren">
                                 </label>
-                                <label class="yellow">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hutfarbe"
-                                        data-value="gelb">
+                                        data-filter="weiteres"
+                                        data-value="erde">
+                                    <img class="picture-toggle-pic" src="assets/icons/weiteres-erde.png" title="Pilz wächst auf Erde, Boden oder Humus">
                                 </label>
-                                <label class="orange">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hutfarbe"
-                                        data-value="orange">
+                                        data-filter="weiteres"
+                                        data-value="gras">
+                                    <img class="picture-toggle-pic" src="assets/icons/weiteres-gras.png" title="Pilz wächst auf der Wiese, im Rasen, im Park oder Garten">
                                 </label>
-                                <label class="red">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hutfarbe"
-                                        data-value="rot">
+                                        data-filter="weiteres"
+                                        data-value="bueschel">
+                                    <img class="picture-toggle-pic" src="assets/icons/weiteres-bueschel.png" title="Pilz wächst büschelig - vorsichtig verwenden">
                                 </label>
-                                <label class="brown">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hutfarbe"
-                                        data-value="braun">
+                                        data-filter="weiteres"
+                                        data-value="hart">
+                                    <img class="picture-toggle-pic" src="assets/icons/weiteres-hart.png" title="Pilz ist hart, holzig oder sehr zäh. Bei Flechten: wachsen auf Gestein oder Felsen">
                                 </label>
-                                <label class="purple">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hutfarbe"
-                                        data-value="lila">
+                                        data-filter="weiteres"
+                                        data-value="hygrophan">
+                                    <img class="picture-toggle-pic" src="assets/icons/weiteres-hygrophan.png" title="Fruchtkörper ist ausbleichend (hygrophan)">
                                 </label>
-                                <label class="blue">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hutfarbe"
-                                        data-value="blau">
+                                        data-filter="weiteres"
+                                        data-value="schmierig">
+                                    <img class="picture-toggle-pic" src="assets/icons/weiteres-schmierig.png" title="Fruchtkörper ist schmierig">
                                 </label>
-                                <label class="green">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="hutfarbe"
-                                        data-value="gruen">
-                                </label>
-                                <label class="grey">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="hutfarbe"
-                                        data-value="grau">
-                                </label>
-                                <label class="black">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="hutfarbe"
-                                        data-value="schwarz">
+                                        data-filter="weiteres"
+                                        data-value="wurzel">
+                                    <img class="picture-toggle-pic" src="assets/icons/weiteres-wurzel.png" title="Fruchtkörper wurzelt oder ist striegelig">
                                 </label>
                             </div>
-                            <p>Lamellen | Röhren | Unterseite</p>
-                            <div class="color-palette">
-                                <label class="white">
+                        </div>
+                    </div>
+
+                    <div class="filter-drop-down">
+                        <label class="drop-down-title">
+                            <p>Sporengeber</p>
+                            <input class ="drop-down-input" type="checkbox">
+                            <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                        </label>
+                        <div class="drop-down-content-wrapper">
+                            <div class="drop-down-content-grid">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="unterfarbe"
-                                        data-value="weiss">
+                                        data-filter="sporengeber"
+                                        data-value="angewachsen">
+                                    <img class="picture-toggle-pic" src="assets/icons/sporen-angewachsen.png" title="Angewachsen">
                                 </label>
-                                <label class="yellow">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="unterfarbe"
-                                        data-value="gelb">
+                                        data-filter="sporengeber"
+                                        data-value="herablaufend">
+                                    <img class="picture-toggle-pic" src="assets/icons/sporen-herablaufend.png" title="Am Stiel herablaufend">
                                 </label>
-                                <label class="orange">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="unterfarbe"
-                                        data-value="orange">
+                                        data-filter="sporengeber"
+                                        data-value="frei">
+                                    <img class="picture-toggle-pic" src="assets/icons/sporen-frei.png" title="Frei">
                                 </label>
-                                <label class="red">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="unterfarbe"
-                                        data-value="rot">
+                                        data-filter="sporengeber"
+                                        data-value="milch">
+                                    <img class="picture-toggle-pic" src="assets/icons/sporen-milch.png" title="Bei Verletzung tritt milchartige klare, weiße oder rote Flüssigkeit aus">
                                 </label>
-                                <label class="brown">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="unterfarbe"
-                                        data-value="braun">
+                                        data-filter="sporengeber"
+                                        data-value="eng">
+                                    <img class="picture-toggle-pic" src="assets/icons/sporen-eng.png" title="Lamellen stehen eng/dicht">
                                 </label>
-                                <label class="purple">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="unterfarbe"
-                                        data-value="lila">
+                                        data-filter="sporengeber"
+                                        data-value="gegabelt">
+                                    <img class="picture-toggle-pic" src="assets/icons/sporen-gegabelt.png" title="Lamellen oder Fruchtkörper sind gegabelt oder queraderig">
                                 </label>
-                                <label class="blue">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="unterfarbe"
-                                        data-value="blau">
-                                </label>
-                                <label class="green">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="unterfarbe"
-                                        data-value="gruen">
-                                </label>
-                                <label class="grey">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="unterfarbe"
-                                        data-value="grau">
-                                </label>
-                                <label class="black">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="unterfarbe"
-                                        data-value="schwarz">
+                                        data-filter="sporengeber"
+                                        data-value="gesaegt">
+                                    <img class="picture-toggle-pic" src="assets/icons/sporen-gesaegt.png" title="Lamellenschneiden sind gesägt oder wellig">
                                 </label>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-drop-down">
+                        <label class="drop-down-title">
                             <p>Stiel</p>
-                            <div class="color-palette">
-                                <label class="white">
+                            <input class ="drop-down-input" type="checkbox">
+                            <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                        </label>
+                        <div class="drop-down-content-wrapper">
+                            <div class="drop-down-content-grid">
+                                <label class="picture-toggle">
+                                    <input
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="stiel"
+                                        data-value="ring">
+                                    <img class="picture-toggle-pic" src="assets/icons/stiel-ring.png" title="Ring am Stiel, auch angedeuteter Ring durch Sporenwurf">
+                                </label>
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="stielfarbe"
-                                        data-value="weiss">
+                                        data-filter="stiel"
+                                        data-value="brüchig">
+                                    <img class="picture-toggle-pic" src="assets/icons/stiel-bruechig.png" title="Brüchig, querbrüchig">
                                 </label>
-                                <label class="yellow">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="stielfarbe"
-                                        data-value="gelb">
+                                        data-filter="stiel"
+                                        data-value="knolle">
+                                    <img class="picture-toggle-pic" src="assets/icons/stiel-knolle.png" title="Knollig">
                                 </label>
-                                <label class="orange">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="stielfarbe"
-                                        data-value="orange">
+                                        data-filter="stiel"
+                                        data-value="faserig">
+                                    <img class="picture-toggle-pic" src="assets/icons/stiel-faserig.png" title="Das Fleisch am Stiel ist faserig, längsfaserig">
                                 </label>
-                                <label class="red">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="stielfarbe"
-                                        data-value="rot">
+                                        data-filter="stiel"
+                                        data-value="netz">
+                                    <img class="picture-toggle-pic" src="assets/icons/stiel-netz.png" title="Mit Netzzeichnung">
                                 </label>
-                                <label class="brown">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="stielfarbe"
-                                        data-value="braun">
+                                        data-filter="stiel"
+                                        data-value="flockig">
+                                    <img class="picture-toggle-pic" src="assets/icons/stiel-flockig.png" title="Flocken, Schuppen am Stiel oder auch am Hut">
                                 </label>
-                                <label class="purple">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="stielfarbe"
-                                        data-value="lila">
+                                        data-filter="stiel"
+                                        data-value="genattert">
+                                    <img class="picture-toggle-pic" src="assets/icons/stiel-genattert.png" title="Natterung, Flecken bis hin zu Grübchen am Stiel">
                                 </label>
-                                <label class="blue">
+                                <label class="picture-toggle">
                                     <input 
                                         type="checkbox"
                                         class="filter-toggle-input"
-                                        data-filter="stielfarbe"
-                                        data-value="blau">
-                                </label>
-                                <label class="green">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="stielfarbe"
-                                        data-value="gruen">
-                                </label>
-                                <label class="grey">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="stielfarbe"
-                                        data-value="grau">
-                                </label>
-                                <label class="black">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="stielfarbe"
-                                        data-value="schwarz">
-                                </label>
-                            </div>
-                            <p>Fleisch</p>
-                            <div class="color-palette">
-                                <label class="white">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="fleischfarbe"
-                                        data-value="weiss">
-                                </label>
-                                <label class="yellow">
-                                    <input type="checkbox">
-                                </label>
-                                <label class="orange">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="fleischfarbe"
-                                        data-value="orange">
-                                </label>
-                                <label class="red">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="fleischfarbe"
-                                        data-value="rot">
-                                </label>
-                                <label class="brown">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="fleischfarbe"
-                                        data-value="braun">
-                                </label>
-                                <label class="purple">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="fleischfarbe"
-                                        data-value="lila">
-                                </label>
-                                <label class="blue">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="fleischfarbe"
-                                        data-value="blau">
-                                </label>
-                                <label class="green">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="fleischfarbe"
-                                        data-value="gruen">
-                                </label>
-                                <label class="grey">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="fleischfarbe"
-                                        data-value="grau">
-                                </label>
-                                <label class="black">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="fleischfarbe"
-                                        data-value="schwarz">
-                                </label>
-                            </div>
-                            <p>Farbänderung nach Anschnitt</p>
-                            <div class="color-palette">
-                                <label class="yellow">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="farbaenderung"
-                                        data-value="gelb">
-                                </label>
-                                <label class="red">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="farbaenderung"
-                                        data-value="rot">
-                                </label>
-                                <label class="brown">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="farbaenderung"
-                                        data-value="braun">
-                                </label>
-                                <label class="blue">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="farbaenderung"
-                                        data-value="blau">
-                                </label>
-                                <label class="green">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="farbaenderung"
-                                        data-value="gruen">
-                                </label>
-                                <label class="grey">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="farbaenderung"
-                                        data-value="grau">
-                                </label>
-                                <label class="none">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="farbaenderung"
-                                        data-value="keine">
-                                    <div class="diagonal-line"></div>
-                                </label>
-                            </div>
-                            <p>Sporenpulver</p>
-                            <div class="color-palette">
-                                <label class="white">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="sporenfarbe"
-                                        data-value="weiss">
-                                </label>
-                                <label class="yellow">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="sporenfarbe"
-                                        data-value="gelb">
-                                </label>
-                                <label class="red">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="sporenfarbe"
-                                        data-value="rot">
-                                </label>
-                                <label class="brown">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="sporenfarbe"
-                                        data-value="braun">
-                                </label>
-                                <label class="purple">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="sporenfarbe"
-                                        data-value="lila">
-                                </label>
-                                <label class="black">
-                                    <input 
-                                        type="checkbox"
-                                        class="filter-toggle-input"
-                                        data-filter="sporenfarbe"
-                                        data-value="schwarz">
+                                        data-filter="stiel"
+                                        data-value="hohl">
+                                    <img class="picture-toggle-pic" src="assets/icons/stiel-hohl.png" title="Hohler Stiel oder wattig hohler Stiel">
                                 </label>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="filter-drop-down">
-                    <label class="drop-down-title">
-                        <p>Geruch</p>
-                        <input class ="drop-down-input" type="checkbox">
-                        <span class="material-symbols-rounded">keyboard_arrow_down</span>
-                    </label>
-                    <div class="drop-down-content-wrapper">
-                        <div class="drop-down-content-words">
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geruch"
-                                    data-value="pilzig">
-                                pilzig
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geruch"
-                                    data-value="fruchtig">
-                                fruchtig | süß
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geruch"
-                                    data-value="anis">
-                                Anis
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geruch"
-                                    data-value="erdig">
-                                erdig
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geruch"
-                                    data-value="rettich">
-                                Rettich
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geruch"
-                                    data-value="marzipan">
-                                Marzipan
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geruch"
-                                    data-value="faulig">
-                                faulig
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geruch"
-                                    data-value="hering">
-                                Hering
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geruch"
-                                    data-value="parfuemiert">
-                                parfümiert
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="filter-drop-down">
-                    <label class="drop-down-title">
-                        <p>Geschmack - Vorsicht!</p>
-                        <input class ="drop-down-input" type="checkbox">
-                        <span class="material-symbols-rounded">keyboard_arrow_down</span>
-                    </label>
-                    <div class="drop-down-content-wrapper">
-                        <div class="drop-down-content-words">
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geschmack"
-                                    data-value="mild">
-                                mild
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geschmack"
-                                    data-value="bitter">
-                                bitter
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geschmack"
-                                    data-value="scharf">
-                                scharf
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geschmack"
-                                    data-value="pilzig">
-                                pilzig
-                            </label>
-                            <label class="word-toggle">
-                                <input 
-                                    type="checkbox"
-                                    class="filter-toggle-input"
-                                    data-filter="geschmack"
-                                    data-value="mehlig">
-                                mehlig
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="filter-drop-down">
-                    <label class="drop-down-title">
-                        <p>Zeitraum</p>
-                        <input class ="drop-down-input" type="checkbox">
-                        <span class="material-symbols-rounded">keyboard_arrow_down</span>
-                    </label>
-                    <div class="drop-down-content-wrapper">
-                        <div class="drop-down-content-rows mushroom-months">
-                            <div id="calendar">
-                                <button type="button" class="month" data-month="1">JAN</button>
-                                <button type="button" class="month" data-month="2">FEB</button>
-                                <button type="button" class="month" data-month="3">MAR</button>
-                                <button type="button" class="month" data-month="4">APR</button>
-                                <button type="button" class="month" data-month="5">MAI</button>
-                                <button type="button" class="month" data-month="6">JUN</button>
-                                <button type="button" class="month" data-month="7">JUL</button>
-                                <button type="button" class="month" data-month="8">AUG</button>
-                                <button type="button" class="month" data-month="9">SEP</button>
-                                <button type="button" class="month" data-month="10">OKT</button>
-                                <button type="button" class="month" data-month="11">NOV</button>
-                                <button type="button" class="month" data-month="12">DEZ</button>
+                    <div class="filter-drop-down">
+                        <label class="drop-down-title">
+                            <p>Farbe</p>
+                            <input class ="drop-down-input" type="checkbox">
+                            <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                        </label>
+                        <div class="drop-down-content-wrapper">
+                            <div class="drop-down-content-color">
+                                <p>Hut</p>
+                                <div class="color-palette">
+                                    <label class="white">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hutfarbe"
+                                            data-value="weiss">
+                                    </label>
+                                    <label class="yellow">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hutfarbe"
+                                            data-value="gelb">
+                                    </label>
+                                    <label class="orange">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hutfarbe"
+                                            data-value="orange">
+                                    </label>
+                                    <label class="red">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hutfarbe"
+                                            data-value="rot">
+                                    </label>
+                                    <label class="brown">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hutfarbe"
+                                            data-value="braun">
+                                    </label>
+                                    <label class="purple">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hutfarbe"
+                                            data-value="lila">
+                                    </label>
+                                    <label class="blue">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hutfarbe"
+                                            data-value="blau">
+                                    </label>
+                                    <label class="green">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hutfarbe"
+                                            data-value="gruen">
+                                    </label>
+                                    <label class="grey">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hutfarbe"
+                                            data-value="grau">
+                                    </label>
+                                    <label class="black">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="hutfarbe"
+                                            data-value="schwarz">
+                                    </label>
+                                </div>
+                                <p>Lamellen | Röhren | Unterseite</p>
+                                <div class="color-palette">
+                                    <label class="white">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="unterfarbe"
+                                            data-value="weiss">
+                                    </label>
+                                    <label class="yellow">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="unterfarbe"
+                                            data-value="gelb">
+                                    </label>
+                                    <label class="orange">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="unterfarbe"
+                                            data-value="orange">
+                                    </label>
+                                    <label class="red">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="unterfarbe"
+                                            data-value="rot">
+                                    </label>
+                                    <label class="brown">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="unterfarbe"
+                                            data-value="braun">
+                                    </label>
+                                    <label class="purple">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="unterfarbe"
+                                            data-value="lila">
+                                    </label>
+                                    <label class="blue">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="unterfarbe"
+                                            data-value="blau">
+                                    </label>
+                                    <label class="green">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="unterfarbe"
+                                            data-value="gruen">
+                                    </label>
+                                    <label class="grey">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="unterfarbe"
+                                            data-value="grau">
+                                    </label>
+                                    <label class="black">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="unterfarbe"
+                                            data-value="schwarz">
+                                    </label>
+                                </div>
+                                <p>Stiel</p>
+                                <div class="color-palette">
+                                    <label class="white">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="stielfarbe"
+                                            data-value="weiss">
+                                    </label>
+                                    <label class="yellow">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="stielfarbe"
+                                            data-value="gelb">
+                                    </label>
+                                    <label class="orange">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="stielfarbe"
+                                            data-value="orange">
+                                    </label>
+                                    <label class="red">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="stielfarbe"
+                                            data-value="rot">
+                                    </label>
+                                    <label class="brown">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="stielfarbe"
+                                            data-value="braun">
+                                    </label>
+                                    <label class="purple">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="stielfarbe"
+                                            data-value="lila">
+                                    </label>
+                                    <label class="blue">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="stielfarbe"
+                                            data-value="blau">
+                                    </label>
+                                    <label class="green">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="stielfarbe"
+                                            data-value="gruen">
+                                    </label>
+                                    <label class="grey">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="stielfarbe"
+                                            data-value="grau">
+                                    </label>
+                                    <label class="black">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="stielfarbe"
+                                            data-value="schwarz">
+                                    </label>
+                                </div>
+                                <p>Fleisch</p>
+                                <div class="color-palette">
+                                    <label class="white">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="fleischfarbe"
+                                            data-value="weiss">
+                                    </label>
+                                    <label class="yellow">
+                                        <input type="checkbox">
+                                    </label>
+                                    <label class="orange">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="fleischfarbe"
+                                            data-value="orange">
+                                    </label>
+                                    <label class="red">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="fleischfarbe"
+                                            data-value="rot">
+                                    </label>
+                                    <label class="brown">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="fleischfarbe"
+                                            data-value="braun">
+                                    </label>
+                                    <label class="purple">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="fleischfarbe"
+                                            data-value="lila">
+                                    </label>
+                                    <label class="blue">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="fleischfarbe"
+                                            data-value="blau">
+                                    </label>
+                                    <label class="green">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="fleischfarbe"
+                                            data-value="gruen">
+                                    </label>
+                                    <label class="grey">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="fleischfarbe"
+                                            data-value="grau">
+                                    </label>
+                                    <label class="black">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="fleischfarbe"
+                                            data-value="schwarz">
+                                    </label>
+                                </div>
+                                <p>Farbänderung nach Anschnitt</p>
+                                <div class="color-palette">
+                                    <label class="yellow">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="farbaenderung"
+                                            data-value="gelb">
+                                    </label>
+                                    <label class="red">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="farbaenderung"
+                                            data-value="rot">
+                                    </label>
+                                    <label class="brown">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="farbaenderung"
+                                            data-value="braun">
+                                    </label>
+                                    <label class="blue">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="farbaenderung"
+                                            data-value="blau">
+                                    </label>
+                                    <label class="green">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="farbaenderung"
+                                            data-value="gruen">
+                                    </label>
+                                    <label class="grey">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="farbaenderung"
+                                            data-value="grau">
+                                    </label>
+                                    <label class="none">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="farbaenderung"
+                                            data-value="keine">
+                                        <div class="diagonal-line"></div>
+                                    </label>
+                                </div>
+                                <p>Sporenpulver</p>
+                                <div class="color-palette">
+                                    <label class="white">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="sporenfarbe"
+                                            data-value="weiss">
+                                    </label>
+                                    <label class="yellow">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="sporenfarbe"
+                                            data-value="gelb">
+                                    </label>
+                                    <label class="red">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="sporenfarbe"
+                                            data-value="rot">
+                                    </label>
+                                    <label class="brown">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="sporenfarbe"
+                                            data-value="braun">
+                                    </label>
+                                    <label class="purple">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="sporenfarbe"
+                                            data-value="lila">
+                                    </label>
+                                    <label class="black">
+                                        <input 
+                                            type="checkbox"
+                                            class="filter-toggle-input"
+                                            data-filter="sporenfarbe"
+                                            data-value="schwarz">
+                                    </label>
+                                </div>
                             </div>
-                            <button id="reset-months">Zurücksetzen</button>
                         </div>
                     </div>
-                </div>
-                
-                <div class="filter-line" id="reset-filter-line">
-                    <button id="reset-filter">Filter zurücksetzen</button>
-                </div>
-            </section>
-        </aside>
 
-        <button id="mobile-filter-button">
-            <span class="material-symbols-rounded" type="button" aria-label="Filter">tune</span>
-        </button>
+                    <div class="filter-drop-down">
+                        <label class="drop-down-title">
+                            <p>Geruch</p>
+                            <input class ="drop-down-input" type="checkbox">
+                            <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                        </label>
+                        <div class="drop-down-content-wrapper">
+                            <div class="drop-down-content-words">
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geruch"
+                                        data-value="pilzig">
+                                    pilzig
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geruch"
+                                        data-value="fruchtig">
+                                    fruchtig | süß
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geruch"
+                                        data-value="anis">
+                                    Anis
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geruch"
+                                        data-value="erdig">
+                                    erdig
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geruch"
+                                        data-value="rettich">
+                                    Rettich
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geruch"
+                                        data-value="marzipan">
+                                    Marzipan
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geruch"
+                                        data-value="faulig">
+                                    faulig
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geruch"
+                                        data-value="hering">
+                                    Hering
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geruch"
+                                        data-value="parfuemiert">
+                                    parfümiert
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-drop-down">
+                        <label class="drop-down-title">
+                            <p>Geschmack - Vorsicht!</p>
+                            <input class ="drop-down-input" type="checkbox">
+                            <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                        </label>
+                        <div class="drop-down-content-wrapper">
+                            <div class="drop-down-content-words">
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geschmack"
+                                        data-value="mild">
+                                    mild
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geschmack"
+                                        data-value="bitter">
+                                    bitter
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geschmack"
+                                        data-value="scharf">
+                                    scharf
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geschmack"
+                                        data-value="pilzig">
+                                    pilzig
+                                </label>
+                                <label class="word-toggle">
+                                    <input 
+                                        type="checkbox"
+                                        class="filter-toggle-input"
+                                        data-filter="geschmack"
+                                        data-value="mehlig">
+                                    mehlig
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-drop-down">
+                        <label class="drop-down-title">
+                            <p>Zeitraum</p>
+                            <input class ="drop-down-input" type="checkbox">
+                            <span class="material-symbols-rounded">keyboard_arrow_down</span>
+                        </label>
+                        <div class="drop-down-content-wrapper">
+                            <div class="drop-down-content-rows mushroom-months">
+                                <div id="calendar">
+                                    <button type="button" class="month" data-month="1">JAN</button>
+                                    <button type="button" class="month" data-month="2">FEB</button>
+                                    <button type="button" class="month" data-month="3">MAR</button>
+                                    <button type="button" class="month" data-month="4">APR</button>
+                                    <button type="button" class="month" data-month="5">MAI</button>
+                                    <button type="button" class="month" data-month="6">JUN</button>
+                                    <button type="button" class="month" data-month="7">JUL</button>
+                                    <button type="button" class="month" data-month="8">AUG</button>
+                                    <button type="button" class="month" data-month="9">SEP</button>
+                                    <button type="button" class="month" data-month="10">OKT</button>
+                                    <button type="button" class="month" data-month="11">NOV</button>
+                                    <button type="button" class="month" data-month="12">DEZ</button>
+                                </div>
+                                <button id="reset-months">Zurücksetzen</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-line" id="reset-filter-line">
+                        <button id="reset-filter">Filter zurücksetzen</button>
+                    </div>
+                </section>
+            </aside>
+
+            <button id="mobile-filter-button">
+                <span class="material-symbols-rounded" type="button" aria-label="Filter">tune</span>
+            </button>
 
 <!-- #endregion -->
 
 <!-- #region results -->
-        <div id="result-wrapper">
-            <p id="search-information">4 Ergebnisse gefunden.</p>
-            
-            <div id="results"> 
-                <div class="mushroom">
-                    <img src="assets/images/parasol.jpg">
-                    <hr class="edible">
-                    <p class="name">Parasol</p>
-                    <p class="synonyms">Riesenschirmling, Riesenschirmpilz, Paukenschläger, ...</p>
-                </div>
-                <div class="mushroom">
-                    <img src="assets/images/steinpilz.jpg">
-                    <hr class="edible">
-                    <p class="name">Steinpilz</p>
-                    <p class="synonyms">Gemeiner Steinpilz, Fichtensteinpilz, Pilftling, ...</p>
-                </div>
-                <div class="mushroom">
-                    <img src="assets/images/pfifferling.jpg">
-                    <hr class="edible">
-                    <p class="name">Echter Pfifferling</p>
-                    <p class="synonyms">Eierschwamm, Rehgeiserl, Reherl...</p>
-                </div>
-                <div class="mushroom">
-                    <img src="assets/images/pantherpilz.jpg">
-                    <hr class="poison">
-                    <p class="name">Pantherpilz</p>
-                    <p class="synonyms">Pantherwulstling, Krötenstuhl, Paddenstuhl, ...</p>
-                </div>           
+            <div id="result-wrapper">
+                <p id="search-information">4 Ergebnisse gefunden.</p>
+                
+                <div id="results"> 
+                    <div class="mushroom">
+                        <img src="assets/images/parasol.jpg">
+                        <hr class="edible">
+                        <p class="name">Parasol</p>
+                        <p class="synonyms">Riesenschirmling, Riesenschirmpilz, Paukenschläger, ...</p>
+                    </div>
+                    <div class="mushroom">
+                        <img src="assets/images/steinpilz.jpg">
+                        <hr class="edible">
+                        <p class="name">Steinpilz</p>
+                        <p class="synonyms">Gemeiner Steinpilz, Fichtensteinpilz, Pilftling, ...</p>
+                    </div>
+                    <div class="mushroom">
+                        <img src="assets/images/pfifferling.jpg">
+                        <hr class="edible">
+                        <p class="name">Echter Pfifferling</p>
+                        <p class="synonyms">Eierschwamm, Rehgeiserl, Reherl...</p>
+                    </div>
+                    <div class="mushroom">
+                        <img src="assets/images/pantherpilz.jpg">
+                        <hr class="poison">
+                        <p class="name">Pantherpilz</p>
+                        <p class="synonyms">Pantherwulstling, Krötenstuhl, Paddenstuhl, ...</p>
+                    </div>           
+                </div> 
             </div> 
-        </div> 
+        </section>
+
+        <section id="mushroom-profile" hidden>
+            <div id="profile-button-wrapper">
+                <button id="close-profile" title="Zurück zur Suche">
+                    <span class="material-symbols-rounded">arrow_back_ios</span>
+                </button>
+            </div>
+
+            <div id="profile-header">
+                <img id="profile-header-pic" src="assets/images/parasol.jpg">
+                <div id="profile-title">
+                    <h1>Parasol</h1>
+                    <h2>Riesenschirmling, Riesenschirmpilz, Paukenschläger, Paukenschleger, Gemeiner Riesenschirmling, Gugermukken, Dunkler Parasol, Schulmeisterpilz, Eulchen, Großer Schirmling</h2>
+                    <h3>MACROLEPIOTA PROCERA (SYN. MASTOCEPHALUS PROCERUS, LEPIOTA PROCERA, LEPIOTOPHYLLUM PROCERUM, MACROLEPIOTA PERMIXTA, MACROLEPIOTA PROCERA F. FULIGINOSA)</h3>
+                    <div id="profile-edibility">
+                        <img id="profile-edibility-icon" src="assets/icons/essen-gut.png" title="Hervorragender Speisepilz">
+                        <p>HERVORRAGENDER SPEISEPILZ</p>
+                    </div>
+                </div>               
+            </div>
+
+            <div id="profile-content">
+                <div>
+                    <h1>Geruch</h1>
+                    <p>Angenehm nussartig.</p>
+                </div>
+                <div>
+                    <h1>Geschmack</h1>
+                    <p>Angenehm nussartig, mild.</p>
+                </div>
+                <div>
+                    <h1>Hut</h1>
+                    <p>3-25 (30) cm Ø, hellbraun, mit gezonten, weichen, wolligen Schüppchen, Rand behangen.</p>
+                </div>
+                <div>
+                    <h1>Fleisch</h1>
+                    <p>Weich, hellbraun, gelbbraun, faserig im Stiel, weiß.</p>
+                </div>
+                <div class="long">
+                    <h1>Stiel</h1>
+                    <p>6-30 (40) cm lang, 2-7 (9) cm Ø dick, Untergrund weißlich bis hellbräunlich, dunkelbrauner Natterung, schlank, zäh, faserig. Bei jungen Parasolen kann die Stielbasis wie ein breiter Teller sein. Je größer der Pilz wird, umso mehr baut sich später der Teller ab.</p>
+                </div>
+                <div>
+                    <h1>Ring</h1>
+                    <p>Wollig-weißlich, doppelrandig, verschiebbar am Stiel, roh hat er einen nussartigen, angenehmen Geschmack.</p>
+                </div>
+                <div>
+                    <h1>Lamellen</h1>
+                    <p>Weiß, frei, weich.</p>
+                </div>
+                <div class="long">
+                    <h1>Sporenpulverfarbe</h1>
+                    <p>Weiß (12-18 x 9-12 µm, ellipsoid geformt). Mikroskopisch sind alle Riesenschirmlinge sehr ähnlich, weshalb besonders auf alle makroskopischen Merkmale geachtet werden soll.</p>
+                </div>
+                <div>
+                    <h1>Vorkommen</h1>
+                    <p>Mischwälder, Waldränder, Waldwege und Heiden, Folgezersetzer, Frühsommer bis Spätherbst.</p>
+                </div>
+                <div>
+                    <h1>Gattung</h1>
+                    <p>Schirmlinge-Riesenschirmlinge.</p>
+                </div>
+                <div class="long">
+                    <h1>Verwechslungsgefahr</h1>
+                    <p>Rußbrauner Riesenschirmpilz, Safranschirmling, Keulenstieliger Garten-Safranschirmling, Ackerschirmpilz, Jungfernschirmling, Schlanker Riesenschirmling, Sternschuppiger Riesenschirmpilz, Gift-Riesenschirmling (Gartenschirmling), Haselbrauner Schirmling, Fuchsbräunlicher Schirmling.</p>
+                </div>
+                <div class="extra-long">
+                    <h1>Bemerkung</h1>
+                    <p>Name Parasol: Para (Gegen, Neben) sol (Sonne) = Sonnenschirm. Wenn auf Komposthaufen oder im Garten Riesenschirmlinge wachsen – nicht verwenden! Es könnte der Gift-Riesenschirmling (Gartenschirmling) sein. Dieser Pilz löst schwere Magen-Darm-Störungen aus. Er rötet wie der Safranschirmling. Bei allen Riesenschirmlingen muss der Ring verschiebbar sein, da es sonst kein Riesenschirmling ist. Wenn der Ring bislang nicht ersichtlich ist, mit den Fingern den Ring vom Hutrand lösen (zuerst 2-3 mm etwas einritzen und dann versuchen es abzusetzen), der jetzt entstandene breite Ring muss verschiebbar sein. Finger weg von kleinen Schirmlingen ohne verschiebbaren Ring – viele tödliche Arten sind in dieser Gattung! Z. B. Haselbrauner Schirmling oder Fuchsbräunlicher Schirmling – diese Arten sind tödlich giftig.</p>
+                </div>
+                <div class="long">
+                    <h1>Varietäten zum Parasol</h1>
+                    <p>Rußbrauner Riesenschirmling (MACROLEPIOTA PROCERA VAR. FULIGINOSA) = dunklen Hut, Stiel nur wenig genattert, Hut dicht mit feinen Flocken bedeckt oder der Rötende Riesenschirmling (MACROLEPIOTA PERMIXTA) = Fleisch verfärbt sich im Stiel rötlich, Hutoberfläche verfärbt sich bei Verletzung weinrötlich. Diese beiden Arten sind ebenso essbar, aber seltener, RL Schweiz (VU = verletzlich).</p>
+                </div>
+                <div class="long">
+                    <h1>Zubereitung</h1>
+                    <p>Für jede Zubereitung geeignet (außer roh), am besten wie Schnitzel panieren und braten! Er kann ungenügend gegart Magen-Darm-Beschwerden hervorrufen, deshalb gut erhitzen!</p>
+                </div>
+                <div>
+                    <h1>Gifthinweise</h1>
+                    <p>Schwermetall-Vergiftung, Hämolytische Anämie</p>
+                </div>
+                <div>
+                    <h1>Relativer Speisewert</h1>  
+                    <p>Schweiz: Marktfähig; DGfM: Positivliste Speisepilz; 123pilze: Relative Wertigkeit 1.</p>
+                </div>
+            </div>
+
+            <div id="profile-gallery">
+                <div id="gallery-pictures">
+                    <img class="gallery-pic" src="assets/images/parasol.jpg">
+                    <img class="gallery-pic" src="assets/images/parasol_1.jpg">
+                    <img class="gallery-pic" src="assets/images/parasol_2.jpg">
+                    <img class="gallery-pic" src="assets/images/parasol_3.jpg">
+                    <img class="gallery-pic" src="assets/images/parasol_4.jpg">
+                </div>
+                <span class="material-symbols-rounded" id="gallery-arrow-l">single_arrow</span>
+                <span class="material-symbols-rounded" id="gallery-arrow-r">single_arrow</span>
+            </div>
+        </section>
     </main>
 
     <script src="script.js"></script>
