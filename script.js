@@ -354,13 +354,13 @@ document.addEventListener('DOMContentLoaded', function() {
     closeProfileButton.addEventListener('click', closeProfile);
 
     // handle visibility of gallery arrows
-    const galleryPictures = document.querySelector('#gallery-pictures');
+    const galleryPictureWrapper = document.querySelector('#gallery-picture-wrapper');
     const galleryArrowL = document.querySelector('#gallery-arrow-l');
     const galleryArrowR = document.querySelector('#gallery-arrow-r');
 
     function handleArrowVisibility() {
-        const scrollPosition = galleryPictures.scrollLeft;
-        const maxScroll = galleryPictures.scrollWidth - galleryPictures.clientWidth - 3;
+        const scrollPosition = galleryPictureWrapper.scrollLeft;
+        const maxScroll = galleryPictureWrapper.scrollWidth - galleryPictureWrapper.clientWidth;
         if (scrollPosition === 0) {
             galleryArrowL.style.opacity = 0;
             galleryArrowR.style.opacity = 1;
@@ -373,7 +373,101 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    galleryPictures.addEventListener('scroll', handleArrowVisibility);
+    galleryPictureWrapper.addEventListener('scroll', handleArrowVisibility);
+
+    // enable scrolling by clicking on the arrows
+    const scrollStep = 200;
+    
+    function scrollGalleryRight() {
+        const currentScrollPosition = galleryPictureWrapper.scrollLeft;
+        const maxScroll = galleryPictureWrapper.scrollWidth - galleryPictureWrapper.clientWidth;
+        galleryPictureWrapper.scrollLeft = Math.min(currentScrollPosition + scrollStep, maxScroll);
+    }
+
+    function scrollGalleryLeft() {
+        const currentScrollPosition = galleryPictureWrapper.scrollLeft;
+        const maxScroll = galleryPictureWrapper.scrollWidth - galleryPictureWrapper.clientWidth;
+        galleryPictureWrapper.scrollLeft = Math.max(currentScrollPosition - scrollStep, 0);
+    }
+
+    galleryArrowR.addEventListener('click', scrollGalleryRight);
+    galleryArrowL.addEventListener('click', scrollGalleryLeft);
+
+    // open gallery zoom
+    const galleryPictures = document.querySelectorAll('.gallery-pic');
+    const zoomedPicture = document.querySelector('#zoomed-picture');
+    const zoomedPictureView = document.querySelector('#zoomed-picture-view');
+    let indexZoomedPic = 0;
+    const body = document.querySelector('body');
+
+    galleryPictures.forEach((pic, index) => {
+        pic.addEventListener('click', () => {
+            zoomedPicture.src = pic.src;
+            zoomedPictureView.hidden = false;
+            body.classList.add('no-scroll');
+            indexZoomedPic = index;
+        });
+    });
+
+    // change pictures in gallery zoom with arrows
+    const zoomedPictureArrowL = document.querySelector('#zoomed-picture-arrow-l');
+    const zoomedPictureArrowR = document.querySelector('#zoomed-picture-arrow-r');
+
+    function scrollZoomedPicLeft () {
+        indexZoomedPic = (indexZoomedPic - 1 + galleryPictures.length) % galleryPictures.length;
+        zoomedPicture.src = galleryPictures[indexZoomedPic].src;
+    }
+
+    function scrollZoomedPicRight () {
+        indexZoomedPic = (indexZoomedPic + 1) % galleryPictures.length;
+        zoomedPicture.src = galleryPictures[indexZoomedPic].src;
+    }
+
+    zoomedPictureArrowL.addEventListener('click', scrollZoomedPicLeft);
+    zoomedPictureArrowR.addEventListener('click', scrollZoomedPicRight);
+
+    // change pictures in gallery zoom with touch
+    let galleryPointerDownX = 0;
+    
+    zoomedPictureView.addEventListener('pointerdown', (e) => {
+        galleryPointerDownX = e.clientX;
+        zoomedPictureView.setPointerCapture(e.pointerId);
+    });
+
+    zoomedPictureView.addEventListener('pointerup', (e) => {
+        const diffX = e.clientX - galleryPointerDownX;
+        if (diffX > 50) {
+            scrollZoomedPicLeft();
+        } else if (diffX < -50) {
+            scrollZoomedPicRight();
+        }
+    });
+
+    // change pictures in gallery zoom with scroll
+    let galleryWheelBlocked = false;
+    let galleryWheelTimeout;
+    
+    zoomedPictureView.addEventListener('wheel', (e) => {
+        if (galleryWheelBlocked) {
+            clearTimeout(galleryWheelTimeout);
+            galleryWheelTimeout = setTimeout(() => {galleryWheelBlocked = false;}, 200);
+            return;
+        }
+        galleryWheelBlocked = true;
+        if (e.deltaX > 0) {
+            scrollZoomedPicLeft();
+        } else {
+            scrollZoomedPicRight();
+        }
+        galleryWheelTimeout = setTimeout(() => {galleryWheelBlocked = false;}, 200);
+    })
+
+    // close gallery zoom
+    const zoomedPictureClose = document.querySelector('#zoomed-picture-close');
+    zoomedPictureClose.addEventListener('click', () => {
+        zoomedPictureView.hidden = true;
+        body.classList.remove('no-scroll');
+    })
 
     // #endregion
 });

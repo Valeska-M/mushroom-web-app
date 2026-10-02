@@ -1123,6 +1123,9 @@
             </div> 
         </section>
 
+<!-- #endregion -->
+
+<!-- #region mushroom-profile -->
         <section id="mushroom-profile" hidden>
             <div id="profile-button-wrapper">
                 <button id="close-profile" title="Zurück zur Suche">
@@ -1211,15 +1214,32 @@
             </div>
 
             <div id="profile-gallery">
-                <div id="gallery-pictures">
+                <div id="gallery-picture-wrapper">
                     <img class="gallery-pic" src="assets/images/parasol.jpg">
                     <img class="gallery-pic" src="assets/images/parasol_1.jpg">
                     <img class="gallery-pic" src="assets/images/parasol_2.jpg">
                     <img class="gallery-pic" src="assets/images/parasol_3.jpg">
                     <img class="gallery-pic" src="assets/images/parasol_4.jpg">
                 </div>
-                <span class="material-symbols-rounded" id="gallery-arrow-l">single_arrow</span>
-                <span class="material-symbols-rounded" id="gallery-arrow-r">single_arrow</span>
+                <button id="gallery-arrow-l">
+                    <span class="material-symbols-rounded">single_arrow</span>
+                </button>
+                <button id="gallery-arrow-r">
+                    <span class="material-symbols-rounded">single_arrow</span>
+                </button>
+            </div>
+
+            <div id="zoomed-picture-view" hidden>
+                <button id="zoomed-picture-close" title="Schließen">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+                <button id="zoomed-picture-arrow-l" title="Vorheriges Bild">
+                    <span class="material-symbols-rounded">single_arrow</span>
+                </button>
+                <img id="zoomed-picture" src="">
+                <button id="zoomed-picture-arrow-r" title="Nächstes Bild">
+                    <span class="material-symbols-rounded">single_arrow</span>
+                </button>
             </div>
         </section>
     </main>

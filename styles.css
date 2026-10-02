@@ -59,6 +59,10 @@ body {
     background-color: var(--c-main-muted);
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 button {
     cursor: pointer;
     color: inherit;
@@ -1071,7 +1075,7 @@ label {
     container-type: size;
 }
 
-#gallery-pictures {
+#gallery-picture-wrapper {
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -1079,6 +1083,7 @@ label {
     overflow-y: hidden;
     gap: var(--gap-s);
     padding: var(--gap-s);
+    scroll-behavior: smooth;
 }
 
 .gallery-pic {
@@ -1088,10 +1093,16 @@ label {
 }
 
 #gallery-arrow-l, #gallery-arrow-r {
-    top: 30cqb;
+    top: calc(50% - 1.75rem);
+    height: 3.5rem;
+    aspect-ratio: 1;
+    border-radius: 999px;
     position: absolute;
     color: white;
-    font-size: 40cqb;
+    background-color: var(--c-accent-neutral);
+    display: flex;
+    align-items: center;
+    margin: 1rem;
     transition: opacity 0.3s;
 }
 
@@ -1106,6 +1117,75 @@ label {
     opacity: 1;
 }
 
+#gallery-arrow-l .material-symbols-rounded, #gallery-arrow-r .material-symbols-rounded {
+    font-size: 3rem;
+    margin-left: 0.4rem;
+}
+
+#zoomed-picture-view {
+    position: fixed;
+    z-index: 1000;
+    background-color: color-mix(in srgb, var(--c-main-muted) 80%, transparent);
+    inset: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    touch-action: none;
+}
+
+#zoomed-picture-close {
+    width: 3.5rem;
+    aspect-ratio: 1;
+    color: white;
+    background-color: var(--c-accent);
+    border-radius: 999px;
+    position: fixed;
+    margin: 1rem;
+    right: 0px;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#zoomed-picture-close .material-symbols-rounded {
+    font-size: 2rem;
+}
+
+#zoomed-picture-arrow-l, #zoomed-picture-arrow-r {
+    height: 3.5rem;
+    aspect-ratio: 1;
+    color: var(--c-main);
+    background-color: var(--c-accent-neutral);
+    border-radius: 999px;
+    position: fixed;
+    margin: 1rem;
+    top: calc(50vh -1.75rem);
+    display: flex;
+    align-items: center;
+}
+
+#zoomed-picture-arrow-l {
+    left: 0px;
+    rotate: 180deg;
+}
+
+#zoomed-picture-arrow-r {
+    right: 0px;
+}
+
+
+#zoomed-picture-arrow-r .material-symbols-rounded, #zoomed-picture-arrow-l .material-symbols-rounded {
+    font-size: 3rem;
+    margin-left: 0.4rem;
+}
+
+#zoomed-picture {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+}
 
 
 /*===============================================================================================
