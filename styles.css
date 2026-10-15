@@ -20,6 +20,9 @@
     --c-accent-neutral-transparent: rgba(138,154,91,0.5);
     --c-contrast-transparent: rgba(72,58,40,0.5);
     --c-edible: #8A9A5B;
+    --c-inedible: rgb(223, 212, 0);
+    --c-toxic: rgb(188, 37, 23);
+    --c-edibility-icon: var(--c-edible);
 
     --shadow: 0 0 0.8rem rgba(72,58,40,0.5);
     --subtle-shadow: 0 0 0.5rem rgba(72,58,40,0.3);
@@ -243,7 +246,7 @@ label {
     gap: var(--gap-s);
 }
 
-.mushroom {
+.mushroom-tile {
     position: relative;
     z-index: 5;
     box-shadow: var(--shadow);
@@ -253,7 +256,7 @@ label {
     cursor: pointer;
 }
 
-.mushroom img {
+.mushroom-tile img {
     display: block;
     width: 100%;
     height: auto;
@@ -262,34 +265,34 @@ label {
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
-.mushroom .edible, .poison {
+.mushroom-tile hr {
     margin-top: 0.2rem;
     height: 0.3rem;
 }
 
-.mushroom .edible {
+.mushroom-tile .great, .mushroom-tile .edible {
     background-color: green;
 }
 
-.mushroom .poison {
+.mushroom-tile .toxic, .mushroom-tile .deadly {
     background-color: red;
 }
 
-.mushroom .name {
+.mushroom-tile .name {
     font-size: 1rem;
     font-weight: 700;
     padding: var(--gap-s) var(--gap-m);
     text-align: center;
 }
 
-.mushroom .synonyms {
+.mushroom-tile .synonyms {
     font-size: var(--font-small);
     padding: var(--gap-m);
     padding-top: 0;
     text-align: center;
 }
 
-.mushroom:active {
+.mushroom-tile:active {
     transform: translateY(2px);
 }
 /* #endregion*/
@@ -921,6 +924,8 @@ label {
     5. POPUP: MUSHROOM PROFILE
 ===============================================================================================*/
 
+/* #region header */
+
 #profile-button-wrapper {
     position: sticky;
     top: var(--height-header-sticky-part);
@@ -973,19 +978,19 @@ label {
     margin-bottom: 100px; /* space for edibility */
 }
 
-#profile-title h1 {
+#profile-name {
     font-size: var(--font-extra-large);
     font-weight: 700;
     margin: var(--gap-s) var(--gap-m);
 }
 
-#profile-title h2 {
+#profile-synonyms {
     font-size: 1rem;
     font-weight: 700;
     margin: 0 var(--gap-m) var(--gap-s) var(--gap-m);
 }
 
-#profile-title h3 {
+#profile-scientific {
     font-size: var(--font-small);
     font-weight: normal;
     margin: 0 var(--gap-m) var(--gap-s) var(--gap-m);
@@ -996,18 +1001,37 @@ label {
     left: 57%;
     bottom: 5px;
     width: 90px;
-    color: var(--c-edible);
-    background-color: var(--c-edible);
+    background-color: var(--c-edibility-icon);
     border-radius: 999px;
     aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    outline: 3px solid var(--c-edible);
+    outline: 3px solid var(--c-edibility-icon);
     border: 3px dotted var(--c-main-muted);
 }
 
+#profile-edibility-text {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    left: -148px;
+    width: 130px;
+    height: 26px;
+    font-size: var(--font-small);
+    font-weight: 700;
+    background-color: var(--c-main-muted);
+    color: var(--c-edibility-icon);
+    border: 3px solid var(--c-edibility-icon);
+    padding: 6px 20px 6px 6px;
+    border-radius: 8px;
+    z-index: -1;
+}
+
 #profile-edibility-icon {
+    color: black;
     width: 64px;
     aspect-ratio: 1;
     object-fit: cover;
@@ -1015,20 +1039,9 @@ label {
     transform: rotate(15deg);
 }
 
-#profile-edibility p {
-    position: absolute;
-    left: -148px;
-    width: 130px;
-    height: 26px;
-    font-size: var(--font-small);
-    font-weight: 700;
-    text-align: center;
-    background-color: var(--c-main-muted);
-    border: 3px solid var(--c-edible);
-    padding: 6px 20px 6px 6px;
-    border-radius: 8px;
-    z-index: -1;
-}
+/* #endregion */
+
+/* #region content */
 
 #profile-content {
     padding: var(--gap-s);
@@ -1069,6 +1082,10 @@ label {
     font-size: 1rem;
 }
 
+/* #endregion */
+
+/* #region gallery */
+
 #profile-gallery {
     position: relative;
     height: 35vh;
@@ -1090,6 +1107,7 @@ label {
     height: 100%;
     object-fit: contain;
     border-radius: var(--border-radius);
+    cursor: pointer;
 }
 
 #gallery-arrow-l, #gallery-arrow-r {
@@ -1122,6 +1140,10 @@ label {
     margin-left: 0.4rem;
 }
 
+/* #endregion */
+
+/* #region gallery zoom */
+
 #zoomed-picture-view {
     position: fixed;
     z-index: 1000;
@@ -1146,6 +1168,7 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: var(--shadow);
 }
 
 #zoomed-picture-close .material-symbols-rounded {
@@ -1163,6 +1186,7 @@ label {
     top: calc(50vh -1.75rem);
     display: flex;
     align-items: center;
+    box-shadow: var(--shadow);
 }
 
 #zoomed-picture-arrow-l {
@@ -1173,7 +1197,6 @@ label {
 #zoomed-picture-arrow-r {
     right: 0px;
 }
-
 
 #zoomed-picture-arrow-r .material-symbols-rounded, #zoomed-picture-arrow-l .material-symbols-rounded {
     font-size: 3rem;
@@ -1187,6 +1210,20 @@ label {
     border-radius: var(--border-radius);
 }
 
+#zoomed-picture-text {
+    background-color: var(--c-contrast-muted);
+    color: var(--c-main);
+    border-radius: 999px;
+    height: 2rem;
+    min-width: 5rem;
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* #endregion */
 
 /*===============================================================================================
     6. RESPONSIVE DESIGN
@@ -1307,7 +1344,7 @@ label {
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 
-    .mushroom:hover {
+    .mushroom-tile:hover {
         scale: 102%;
     }
 
@@ -1315,7 +1352,7 @@ label {
 
 /* #region mushroom profile */
 
-    #close-profile:hover {
+    #close-profile:hover, #zoomed-picture-close:hover, #zoomed-picture-arrow-l:hover, #zoomed-picture-arrow-r:hover {
         scale: 110%;
     }
 
@@ -1348,14 +1385,14 @@ label {
         justify-content: center;
     }
 
-    #profile-title h1, #profile-title h2, #profile-title h3 {
-        text-align: left;
+    #profile-name, #profile-synonyms, #profile-scientific {
+        width: 100%;
     }
 
     #profile-edibility {
         left: auto;
-        right: 0px;
-        bottom: -105px;
+        right: 132px;
+        bottom: -80px;
     }
 
     #profile-content {
@@ -1381,6 +1418,5 @@ label {
 
 /* Plan:
 Suche per Enter einbauen
-Schriftfarbe bei Kalender
 Teilweise zu einfach-auswahl machen
 rem responsive */

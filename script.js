@@ -286,6 +286,56 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================================================================
     // #region load mushrooms
     // ==========================================================================================
+    
+    // for now: load all mushrooms from json file
+    let allMushrooms;
+    const results = document.querySelector('#results'); // parent for the mushroom tiles
+
+    async function loadMushrooms() {
+        const response = await fetch("assets/data/mushrooms.json");
+        allMushrooms = await response.json();
+        Object.entries(allMushrooms).forEach(([id, data]) => createTile(id, data));
+    }
+     
+    function createTile(id, data) {
+        const mushroomTile = document.createElement("div");
+        mushroomTile.id = id;
+        mushroomTile.classList.add("mushroom-tile");
+        // transform edibility into class for hr-element
+        let edibilityClass;
+        if (data.edibility === "Hervorragender Speisepilz") {
+            edibilityClass = "great";
+        } else if (data.edibility === "Essbarer Pilz") {
+            edibilityClass = "edible";
+        } else if (data.edibility === "Ungenießbarer Pilz") {
+            edibilityClass = "inedible";
+        } else if (data.edibility === "Giftiger Pilz") {
+            edibilityClass = "toxic";
+        } else {
+            edibilityClass = "deadly";
+        }
+        // get first three synonyms
+        const synonymList = data.synonyms.split(",");
+        let synonyms = synonymList.slice(0,3).join(",")
+        if (synonymList.length > 3) {
+            synonyms += ", ...";
+        }
+        // create inner HTML
+        mushroomTile.innerHTML = `
+            <img src="${data.pictures[0]}">
+            <hr class="${edibilityClass}">
+            <p class="name">${data.name}</p>
+            <p class="synonyms">${synonyms}</p>
+        `;
+        // add event listener
+        mushroomTile.addEventListener('click', () => openProfile(id));
+        // add to parent
+        results.appendChild(mushroomTile);
+    }
+    
+    loadMushrooms();
+    
+    // for later to get the right mushrooms out of the database
     const applyFilter = document.querySelector('#apply-filter');
 
     function getQueryParams() {
@@ -322,9 +372,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     applyFilter.addEventListener('click', () => {
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         console.log(getQueryParams().toString());
     });
+
     // #endregion
 
     // ==========================================================================================
@@ -333,15 +383,91 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // change between search and profile
     const mushroomProfile = document.querySelector('#mushroom-profile');
-    const mushroomTiles = document.querySelectorAll('.mushroom');
+    const profileHeaderPic = document.querySelector('#profile-header-pic');
+    const profileName = document.querySelector('#profile-name');
+    const profileSynonyms = document.querySelector('#profile-synonyms');
+    const profileScientific = document.querySelector('#profile-scientific');
+    const profileEdibilityIcon = document.querySelector('#profile-edibility-icon');
+    const profileEdibilityText = document.querySelector('#profile-edibility-text');
+    const profileContent = document.querySelector('#profile-content');
+    const galleryPictureWrapper = document.querySelector('#gallery-picture-wrapper');
     const closeProfileButton = document.querySelector('#close-profile');
     let searchScrollPosition = 0;
+    const zoomedPicture = document.querySelector('#zoomed-picture');
+    const zoomedPictureView = document.querySelector('#zoomed-picture-view');
+    const zoomedPictureText = document.querySelector('#zoomed-picture-text');
+    let indexZoomedPic = 0;
+    let numberOfPics;
+    const body = document.querySelector('body');
+    let galleryPictures;
 
-    function openProfile() {
+    function openProfile(mushroomId) {
         searchScrollPosition = window.scrollY;
+        // add loading bar?
+        fillProfile(mushroomId);
         mushroomSearch.hidden = true;
         mushroomProfile.hidden = false;
         window.scrollTo(0, 0);
+    }
+
+    function fillProfile(mushroomId) {
+        const mushroom = allMushrooms[mushroomId];
+        // profile header
+        profileHeaderPic.src = mushroom.pictures[0];
+        profileName.textContent = mushroom.name;
+        profileSynonyms.textContent = mushroom.synonyms;
+        profileScientific.textContent = mushroom.scientific;
+        // edibility icon
+        profileEdibilityIcon.title = mushroom.edibility;
+        profileEdibilityText.textContent = mushroom.edibility.toUpperCase();
+        if (mushroom.edibility === "Hervorragender Speisepilz") {
+            profileEdibilityIcon.src = "assets/icons/essen-gut.png";
+            document.documentElement.style.setProperty("--c-edibility-icon", "var(--c-edible)");
+        } else if (mushroom.edibility === "Essbarer Pilz") {
+            profileEdibilityIcon.src = "assets/icons/essen-essbar.png";
+            document.documentElement.style.setProperty("--c-edibility-icon", "var(--c-edible)");
+        } else if (mushroom.edibility === "Ungenießbarer Pilz") {
+            profileEdibilityIcon.src = "assets/icons/essen-ungeniessbar.png";
+            document.documentElement.style.setProperty("--c-edibility-icon", "var(--c-inedible)");
+        } else if (mushroom.edibility === "Giftiger Pilz") {
+            profileEdibilityIcon.src = "assets/icons/essen-giftig.png";
+            document.documentElement.style.setProperty("--c-edibility-icon", "var(--c-toxic)");
+        } else {
+            profileEdibilityIcon.src = "assets/icons/essen-toedlich.png";
+            document.documentElement.style.setProperty("--c-edibility-icon", "var(--c-toxic)");
+        }
+        // content
+        profileContent.replaceChildren();
+        Object.entries(mushroom.features).forEach(([headline, content]) => {
+            const contentDiv = document.createElement("div");
+            if (content.length > 500) {
+                contentDiv.classList.add("extra-long");
+            } else if (content.length > 150) {
+                contentDiv.classList.add("long");
+            }
+            contentDiv.innerHTML = `
+                <h1>${headline}</h1>
+                <p>${content}</p>
+                `;
+            profileContent.append(contentDiv);
+        });
+        // gallery
+        galleryPictureWrapper.replaceChildren();
+        numberOfPics = mushroom.pictures.length;
+        mushroom.pictures.forEach((link, index) => {
+            const picElement = document.createElement("img");
+            picElement.classList.add("gallery-pic");
+            picElement.src = link;
+            picElement.addEventListener('click', () => { // open gallery zoom
+                zoomedPicture.src = link;
+                zoomedPictureView.hidden = false;
+                body.classList.add('no-scroll');
+                indexZoomedPic = index;
+                zoomedPictureText.textContent = `${indexZoomedPic + 1}/${numberOfPics}`;
+            });
+            galleryPictureWrapper.append(picElement);
+        });
+        galleryPictures = document.querySelectorAll('.gallery-pic');
     }
 
     function closeProfile() {
@@ -350,11 +476,9 @@ document.addEventListener('DOMContentLoaded', function() {
         window.scrollTo(0, searchScrollPosition);
     }
 
-    mushroomTiles.forEach(tile => tile.addEventListener('click', openProfile));
     closeProfileButton.addEventListener('click', closeProfile);
 
     // handle visibility of gallery arrows
-    const galleryPictureWrapper = document.querySelector('#gallery-picture-wrapper');
     const galleryArrowL = document.querySelector('#gallery-arrow-l');
     const galleryArrowR = document.querySelector('#gallery-arrow-r');
 
@@ -386,41 +510,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function scrollGalleryLeft() {
         const currentScrollPosition = galleryPictureWrapper.scrollLeft;
-        const maxScroll = galleryPictureWrapper.scrollWidth - galleryPictureWrapper.clientWidth;
         galleryPictureWrapper.scrollLeft = Math.max(currentScrollPosition - scrollStep, 0);
     }
 
     galleryArrowR.addEventListener('click', scrollGalleryRight);
     galleryArrowL.addEventListener('click', scrollGalleryLeft);
 
-    // open gallery zoom
-    const galleryPictures = document.querySelectorAll('.gallery-pic');
-    const zoomedPicture = document.querySelector('#zoomed-picture');
-    const zoomedPictureView = document.querySelector('#zoomed-picture-view');
-    let indexZoomedPic = 0;
-    const body = document.querySelector('body');
-
-    galleryPictures.forEach((pic, index) => {
-        pic.addEventListener('click', () => {
-            zoomedPicture.src = pic.src;
-            zoomedPictureView.hidden = false;
-            body.classList.add('no-scroll');
-            indexZoomedPic = index;
-        });
-    });
-
     // change pictures in gallery zoom with arrows
     const zoomedPictureArrowL = document.querySelector('#zoomed-picture-arrow-l');
     const zoomedPictureArrowR = document.querySelector('#zoomed-picture-arrow-r');
 
     function scrollZoomedPicLeft () {
+        console.log("Scroll left");
         indexZoomedPic = (indexZoomedPic - 1 + galleryPictures.length) % galleryPictures.length;
         zoomedPicture.src = galleryPictures[indexZoomedPic].src;
+        zoomedPictureText.textContent = `${indexZoomedPic + 1}/${numberOfPics}`;
     }
 
     function scrollZoomedPicRight () {
+        console.log("Scroll right");
         indexZoomedPic = (indexZoomedPic + 1) % galleryPictures.length;
         zoomedPicture.src = galleryPictures[indexZoomedPic].src;
+        zoomedPictureText.textContent = `${indexZoomedPic + 1}/${numberOfPics}`;
     }
 
     zoomedPictureArrowL.addEventListener('click', scrollZoomedPicLeft);
@@ -431,7 +542,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     zoomedPictureView.addEventListener('pointerdown', (e) => {
         galleryPointerDownX = e.clientX;
-        zoomedPictureView.setPointerCapture(e.pointerId);
     });
 
     zoomedPictureView.addEventListener('pointerup', (e) => {

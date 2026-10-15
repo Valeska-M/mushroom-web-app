@@ -1090,35 +1090,18 @@
 
 <!-- #endregion -->
 
-<!-- #region results -->
+<!-- #region result tiles -->
             <div id="result-wrapper">
                 <p id="search-information">4 Ergebnisse gefunden.</p>
                 
                 <div id="results"> 
-                    <div class="mushroom">
-                        <img src="assets/images/parasol.jpg">
-                        <hr class="edible">
-                        <p class="name">Parasol</p>
-                        <p class="synonyms">Riesenschirmling, Riesenschirmpilz, Paukenschläger, ...</p>
-                    </div>
-                    <div class="mushroom">
-                        <img src="assets/images/steinpilz.jpg">
-                        <hr class="edible">
-                        <p class="name">Steinpilz</p>
-                        <p class="synonyms">Gemeiner Steinpilz, Fichtensteinpilz, Pilftling, ...</p>
-                    </div>
-                    <div class="mushroom">
-                        <img src="assets/images/pfifferling.jpg">
-                        <hr class="edible">
-                        <p class="name">Echter Pfifferling</p>
-                        <p class="synonyms">Eierschwamm, Rehgeiserl, Reherl...</p>
-                    </div>
-                    <div class="mushroom">
-                        <img src="assets/images/pantherpilz.jpg">
+                    <!-- elements are created in JavaScript and structured like this:
+                    <div class="mushroom-tile" id="fliegenpilz">
+                        <img src="assets/images/fliegenpilz.jpg">
                         <hr class="poison">
-                        <p class="name">Pantherpilz</p>
-                        <p class="synonyms">Pantherwulstling, Krötenstuhl, Paddenstuhl, ...</p>
-                    </div>           
+                        <p class="name">Fliegenpilz</p>
+                        <p class="synonyms">Roter Fliegenpilz, Fliegentod, Narrenschwamm, ...</p>
+                    </div>            -->
                 </div> 
             </div> 
         </section>
@@ -1133,93 +1116,32 @@
                 </button>
             </div>
 
+            <!-- content of profile gets filled in in JavaScript (function fillProfile()) !-->
             <div id="profile-header">
-                <img id="profile-header-pic" src="assets/images/parasol.jpg">
+                <img id="profile-header-pic" src="">
                 <div id="profile-title">
-                    <h1>Parasol</h1>
-                    <h2>Riesenschirmling, Riesenschirmpilz, Paukenschläger, Paukenschleger, Gemeiner Riesenschirmling, Gugermukken, Dunkler Parasol, Schulmeisterpilz, Eulchen, Großer Schirmling</h2>
-                    <h3>MACROLEPIOTA PROCERA (SYN. MASTOCEPHALUS PROCERUS, LEPIOTA PROCERA, LEPIOTOPHYLLUM PROCERUM, MACROLEPIOTA PERMIXTA, MACROLEPIOTA PROCERA F. FULIGINOSA)</h3>
-                    <div id="profile-edibility">
-                        <img id="profile-edibility-icon" src="assets/icons/essen-gut.png" title="Hervorragender Speisepilz">
-                        <p>HERVORRAGENDER SPEISEPILZ</p>
-                    </div>
-                </div>               
+                    <p id="profile-name"></p>
+                    <p id="profile-synonyms"></p>
+                    <p id="profile-scientific"></p>
+                </div>    
+                <div id="profile-edibility">
+                    <img id="profile-edibility-icon" src="" title="">
+                    <p id="profile-edibility-text"></p>
+                </div>           
             </div>
 
             <div id="profile-content">
-                <div>
-                    <h1>Geruch</h1>
-                    <p>Angenehm nussartig.</p>
-                </div>
-                <div>
-                    <h1>Geschmack</h1>
-                    <p>Angenehm nussartig, mild.</p>
-                </div>
-                <div>
-                    <h1>Hut</h1>
-                    <p>3-25 (30) cm Ø, hellbraun, mit gezonten, weichen, wolligen Schüppchen, Rand behangen.</p>
-                </div>
-                <div>
-                    <h1>Fleisch</h1>
-                    <p>Weich, hellbraun, gelbbraun, faserig im Stiel, weiß.</p>
-                </div>
+                <!-- elements are created in JavaScript and structured like this (class "long" is optional):
                 <div class="long">
-                    <h1>Stiel</h1>
-                    <p>6-30 (40) cm lang, 2-7 (9) cm Ø dick, Untergrund weißlich bis hellbräunlich, dunkelbrauner Natterung, schlank, zäh, faserig. Bei jungen Parasolen kann die Stielbasis wie ein breiter Teller sein. Je größer der Pilz wird, umso mehr baut sich später der Teller ab.</p>
-                </div>
-                <div>
-                    <h1>Ring</h1>
-                    <p>Wollig-weißlich, doppelrandig, verschiebbar am Stiel, roh hat er einen nussartigen, angenehmen Geschmack.</p>
-                </div>
-                <div>
-                    <h1>Lamellen</h1>
-                    <p>Weiß, frei, weich.</p>
-                </div>
-                <div class="long">
-                    <h1>Sporenpulverfarbe</h1>
-                    <p>Weiß (12-18 x 9-12 µm, ellipsoid geformt). Mikroskopisch sind alle Riesenschirmlinge sehr ähnlich, weshalb besonders auf alle makroskopischen Merkmale geachtet werden soll.</p>
-                </div>
-                <div>
-                    <h1>Vorkommen</h1>
-                    <p>Mischwälder, Waldränder, Waldwege und Heiden, Folgezersetzer, Frühsommer bis Spätherbst.</p>
-                </div>
-                <div>
-                    <h1>Gattung</h1>
-                    <p>Schirmlinge-Riesenschirmlinge.</p>
-                </div>
-                <div class="long">
-                    <h1>Verwechslungsgefahr</h1>
-                    <p>Rußbrauner Riesenschirmpilz, Safranschirmling, Keulenstieliger Garten-Safranschirmling, Ackerschirmpilz, Jungfernschirmling, Schlanker Riesenschirmling, Sternschuppiger Riesenschirmpilz, Gift-Riesenschirmling (Gartenschirmling), Haselbrauner Schirmling, Fuchsbräunlicher Schirmling.</p>
-                </div>
-                <div class="extra-long">
-                    <h1>Bemerkung</h1>
-                    <p>Name Parasol: Para (Gegen, Neben) sol (Sonne) = Sonnenschirm. Wenn auf Komposthaufen oder im Garten Riesenschirmlinge wachsen – nicht verwenden! Es könnte der Gift-Riesenschirmling (Gartenschirmling) sein. Dieser Pilz löst schwere Magen-Darm-Störungen aus. Er rötet wie der Safranschirmling. Bei allen Riesenschirmlingen muss der Ring verschiebbar sein, da es sonst kein Riesenschirmling ist. Wenn der Ring bislang nicht ersichtlich ist, mit den Fingern den Ring vom Hutrand lösen (zuerst 2-3 mm etwas einritzen und dann versuchen es abzusetzen), der jetzt entstandene breite Ring muss verschiebbar sein. Finger weg von kleinen Schirmlingen ohne verschiebbaren Ring – viele tödliche Arten sind in dieser Gattung! Z. B. Haselbrauner Schirmling oder Fuchsbräunlicher Schirmling – diese Arten sind tödlich giftig.</p>
-                </div>
-                <div class="long">
-                    <h1>Varietäten zum Parasol</h1>
-                    <p>Rußbrauner Riesenschirmling (MACROLEPIOTA PROCERA VAR. FULIGINOSA) = dunklen Hut, Stiel nur wenig genattert, Hut dicht mit feinen Flocken bedeckt oder der Rötende Riesenschirmling (MACROLEPIOTA PERMIXTA) = Fleisch verfärbt sich im Stiel rötlich, Hutoberfläche verfärbt sich bei Verletzung weinrötlich. Diese beiden Arten sind ebenso essbar, aber seltener, RL Schweiz (VU = verletzlich).</p>
-                </div>
-                <div class="long">
-                    <h1>Zubereitung</h1>
-                    <p>Für jede Zubereitung geeignet (außer roh), am besten wie Schnitzel panieren und braten! Er kann ungenügend gegart Magen-Darm-Beschwerden hervorrufen, deshalb gut erhitzen!</p>
-                </div>
-                <div>
-                    <h1>Gifthinweise</h1>
-                    <p>Schwermetall-Vergiftung, Hämolytische Anämie</p>
-                </div>
-                <div>
-                    <h1>Relativer Speisewert</h1>  
-                    <p>Schweiz: Marktfähig; DGfM: Positivliste Speisepilz; 123pilze: Relative Wertigkeit 1.</p>
-                </div>
+                    <h1></h1>
+                    <p></p>
+                </div> !-->
             </div>
 
             <div id="profile-gallery">
                 <div id="gallery-picture-wrapper">
-                    <img class="gallery-pic" src="assets/images/parasol.jpg">
-                    <img class="gallery-pic" src="assets/images/parasol_1.jpg">
-                    <img class="gallery-pic" src="assets/images/parasol_2.jpg">
-                    <img class="gallery-pic" src="assets/images/parasol_3.jpg">
-                    <img class="gallery-pic" src="assets/images/parasol_4.jpg">
+                    <!-- elements are created in JavaScript and structured like this:
+                    <img class="gallery-pic" src="assets/images/..."> !-->
                 </div>
                 <button id="gallery-arrow-l">
                     <span class="material-symbols-rounded">single_arrow</span>
@@ -1240,6 +1162,7 @@
                 <button id="zoomed-picture-arrow-r" title="Nächstes Bild">
                     <span class="material-symbols-rounded">single_arrow</span>
                 </button>
+                <div id="zoomed-picture-text"></div>
             </div>
         </section>
     </main>
