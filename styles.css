@@ -6,6 +6,8 @@
 :root {
     font-size: 16;
     --font-small: 0.8rem;
+    --font-large: 1.2rem;
+    --font-extra-large: 2rem;
 
     --border-radius: 0.5rem;
 
@@ -17,8 +19,13 @@
     --c-accent-neutral: #8A9A5B;
     --c-accent-neutral-transparent: rgba(138,154,91,0.5);
     --c-contrast-transparent: rgba(72,58,40,0.5);
+    --c-edible: #8A9A5B;
+    --c-inedible: rgb(223, 212, 0);
+    --c-toxic: rgb(188, 37, 23);
+    --c-edibility-icon: var(--c-edible);
 
     --shadow: 0 0 0.8rem rgba(72,58,40,0.5);
+    --subtle-shadow: 0 0 0.5rem rgba(72,58,40,0.3);
     --inset-shadow: inset 0 3px 3px rgba(72,58,40,0.5);
 
     --gap-s: 0.5rem;
@@ -41,7 +48,11 @@
     border: none;
 }
 
-p {
+[hidden] {
+    display: none !important;
+}
+
+p, h1, h2, h3 {
     overflow-wrap: break-word;
     hyphens:auto;
 }
@@ -49,7 +60,10 @@ p {
 body {
     padding-bottom: 6rem;
     background-color: var(--c-main-muted);
-    height: 2000px; /* only for demonstration */
+}
+
+body.no-scroll {
+    overflow: hidden;
 }
 
 button {
@@ -209,7 +223,8 @@ label {
 ===============================================================================================*/
 
 /* #region layout */
-main {
+
+#mushroom-search {
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
@@ -231,7 +246,7 @@ main {
     gap: var(--gap-s);
 }
 
-.mushroom {
+.mushroom-tile {
     position: relative;
     z-index: 5;
     box-shadow: var(--shadow);
@@ -241,7 +256,7 @@ main {
     cursor: pointer;
 }
 
-.mushroom img {
+.mushroom-tile img {
     display: block;
     width: 100%;
     height: auto;
@@ -250,34 +265,34 @@ main {
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
-.mushroom .edible, .poison {
+.mushroom-tile hr {
     margin-top: 0.2rem;
     height: 0.3rem;
 }
 
-.mushroom .edible {
+.mushroom-tile .great, .mushroom-tile .edible {
     background-color: green;
 }
 
-.mushroom .poison {
+.mushroom-tile .toxic, .mushroom-tile .deadly {
     background-color: red;
 }
 
-.mushroom .name {
+.mushroom-tile .name {
     font-size: 1rem;
     font-weight: 700;
     padding: var(--gap-s) var(--gap-m);
     text-align: center;
 }
 
-.mushroom .synonyms {
+.mushroom-tile .synonyms {
     font-size: var(--font-small);
     padding: var(--gap-m);
     padding-top: 0;
     text-align: center;
 }
 
-.mushroom:active {
+.mushroom-tile:active {
     transform: translateY(2px);
 }
 /* #endregion*/
@@ -909,6 +924,306 @@ main {
     5. POPUP: MUSHROOM PROFILE
 ===============================================================================================*/
 
+/* #region header */
+
+#profile-button-wrapper {
+    position: sticky;
+    top: var(--height-header-sticky-part);
+    height: 0;
+    z-index: 2;
+}
+
+#close-profile {
+    position: absolute;
+    background-color: var(--c-accent);
+    color: var(--c-main);
+    border-radius: 999px;
+    width: 3.5rem;
+    aspect-ratio: 1;
+    box-shadow: var(--shadow);
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+#close-profile:active {
+    box-shadow: var(--inset-shadow);
+    transform: translateY(2px);
+}
+
+#close-profile .material-symbols-rounded {
+    font-size: 2rem;
+    margin-left: 1.1rem;
+}
+
+#profile-header {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+#profile-header-pic {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    background-color: var(--c-contrast-muted);
+}
+
+#profile-title {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px; /* space for edibility */
+}
+
+#profile-name {
+    font-size: var(--font-extra-large);
+    font-weight: 700;
+    margin: var(--gap-s) var(--gap-m);
+}
+
+#profile-synonyms {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 var(--gap-m) var(--gap-s) var(--gap-m);
+}
+
+#profile-scientific {
+    font-size: var(--font-small);
+    font-weight: normal;
+    margin: 0 var(--gap-m) var(--gap-s) var(--gap-m);
+}
+
+#profile-edibility {
+    position: absolute;
+    left: 57%;
+    bottom: 5px;
+    width: 90px;
+    background-color: var(--c-edibility-icon);
+    border-radius: 999px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 3px solid var(--c-edibility-icon);
+    border: 3px dotted var(--c-main-muted);
+}
+
+#profile-edibility-text {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    left: -148px;
+    width: 130px;
+    height: 26px;
+    font-size: var(--font-small);
+    font-weight: 700;
+    background-color: var(--c-main-muted);
+    color: var(--c-edibility-icon);
+    border: 3px solid var(--c-edibility-icon);
+    padding: 6px 20px 6px 6px;
+    border-radius: 8px;
+    z-index: -1;
+}
+
+#profile-edibility-icon {
+    color: black;
+    width: 64px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    filter: brightness(0) invert(1);
+    transform: rotate(15deg);
+}
+
+/* #endregion */
+
+/* #region content */
+
+#profile-content {
+    padding: var(--gap-s);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-auto-flow: dense;
+    gap: var(--gap-s);
+    container-type: inline-size;
+}
+
+@container (min-width: 308px) { /* min width = width of profile content with 2 colums */
+    .long, .extra-long {
+        grid-column: span 2;
+    }
+}
+
+@container (min-width: 466px) { /* min width = width of profile content with 3 colums */
+    .extra-long {
+        grid-column: span 3;
+    }
+}
+
+#profile-content div {
+    background-color: var(--c-main);
+    border-radius: var(--border-radius);
+    padding: var(--gap-m);
+    box-shadow: var(--subtle-shadow);
+}
+
+#profile-content h1 {
+    font-size: var(--font-large);
+    text-align: center;
+    margin-bottom: var(--gap-s);
+    font-weight: 700;
+}
+
+#profile-content p {
+    font-size: 1rem;
+}
+
+/* #endregion */
+
+/* #region gallery */
+
+#profile-gallery {
+    position: relative;
+    height: 35vh;
+    container-type: size;
+}
+
+#gallery-picture-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    gap: var(--gap-s);
+    padding: var(--gap-s);
+    scroll-behavior: smooth;
+}
+
+.gallery-pic {
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+#gallery-arrow-l, #gallery-arrow-r {
+    top: calc(50% - 1.75rem);
+    height: 3.5rem;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    position: absolute;
+    color: white;
+    background-color: var(--c-accent-neutral);
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    transition: opacity 0.3s;
+}
+
+#gallery-arrow-l {
+    left: 0px;
+    rotate: 180deg;
+    opacity: 0;
+}
+
+#gallery-arrow-r {
+    right: 0px;
+    opacity: 1;
+}
+
+#gallery-arrow-l .material-symbols-rounded, #gallery-arrow-r .material-symbols-rounded {
+    font-size: 3rem;
+    margin-left: 0.4rem;
+}
+
+/* #endregion */
+
+/* #region gallery zoom */
+
+#zoomed-picture-view {
+    position: fixed;
+    z-index: 1000;
+    background-color: color-mix(in srgb, var(--c-main-muted) 80%, transparent);
+    inset: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    touch-action: none;
+}
+
+#zoomed-picture-close {
+    width: 3.5rem;
+    aspect-ratio: 1;
+    color: white;
+    background-color: var(--c-accent);
+    border-radius: 999px;
+    position: fixed;
+    margin: 1rem;
+    right: 0px;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+}
+
+#zoomed-picture-close .material-symbols-rounded {
+    font-size: 2rem;
+}
+
+#zoomed-picture-arrow-l, #zoomed-picture-arrow-r {
+    height: 3.5rem;
+    aspect-ratio: 1;
+    color: var(--c-main);
+    background-color: var(--c-accent-neutral);
+    border-radius: 999px;
+    position: fixed;
+    margin: 1rem;
+    top: calc(50vh -1.75rem);
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+#zoomed-picture-arrow-l {
+    left: 0px;
+    rotate: 180deg;
+}
+
+#zoomed-picture-arrow-r {
+    right: 0px;
+}
+
+#zoomed-picture-arrow-r .material-symbols-rounded, #zoomed-picture-arrow-l .material-symbols-rounded {
+    font-size: 3rem;
+    margin-left: 0.4rem;
+}
+
+#zoomed-picture {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+}
+
+#zoomed-picture-text {
+    background-color: var(--c-contrast-muted);
+    color: var(--c-main);
+    border-radius: 999px;
+    height: 2rem;
+    min-width: 5rem;
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* #endregion */
 
 /*===============================================================================================
     6. RESPONSIVE DESIGN
@@ -963,7 +1278,7 @@ main {
 
 /* #region filter popup */
 
-    main {
+    #mushroom-search {
         grid-template-columns: 25rem 1fr;
         position: relative;
         height: 100%;
@@ -971,7 +1286,7 @@ main {
         width: calc(25rem + 100%);
     }
 
-    main.filter-open {
+    #mushroom-search.filter-open {
         left: 0px;
         width: 100%;
     }
@@ -1000,7 +1315,7 @@ main {
     }
 
     #close-filter:hover, #apply-filter:hover, #desktop-filter-button:hover {
-        scale: 110%
+        scale: 110%;
     }
 
     #reset-filter:hover {
@@ -1029,8 +1344,73 @@ main {
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 
-    .mushroom:hover {
+    .mushroom-tile:hover {
         scale: 102%;
+    }
+
+/* #endregion */
+
+/* #region mushroom profile */
+
+    #close-profile:hover, #zoomed-picture-close:hover, #zoomed-picture-arrow-l:hover, #zoomed-picture-arrow-r:hover {
+        scale: 110%;
+    }
+
+    #profile-header {
+        background-color: var(--c-main);
+        margin: var(--gap-m) 200px 80px 0px;
+        border-radius: 0px var(--border-radius) var(--border-radius) 0px;
+        align-items: center;
+        box-shadow: var(--subtle-shadow);
+        padding: var(--gap-m) 0px 24px 0px;
+    }
+
+    #profile-header-pic {
+        position: absolute;
+        top: 16px;
+        right: -184px;
+        width: 300px;
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: center;
+        border-radius: var(--border-radius);
+        box-shadow: var(--subtle-shadow);
+    }
+
+    #profile-title {
+        position: relative;
+        min-height: 196px; /* to make sure the content below never disappeares behind the picture */
+        margin: 0px 132px 0px 4.5rem; /* to leave space for the close-profile button */
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #profile-name, #profile-synonyms, #profile-scientific {
+        width: 100%;
+    }
+
+    #profile-edibility {
+        left: auto;
+        right: 132px;
+        bottom: -80px;
+    }
+
+    #profile-content {
+        padding: var(--gap-m) 200px;
+        gap: var(--gap-m);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    @container (min-width: 416px) { /* min width = width of profile content with 2 colums */
+        .long, .extra-long {
+            grid-column: span 2;
+        }
+    }
+
+    @container (min-width: 632px) { /* min width = width of profile content with 3 colums */
+        .extra-long {
+            grid-column: span 3;
+        }
     }
 }
 
@@ -1038,6 +1418,5 @@ main {
 
 /* Plan:
 Suche per Enter einbauen
-Farbe der Überschriften bei Kalender und Schirmgröße reagieren lassen
 Teilweise zu einfach-auswahl machen
 rem responsive */

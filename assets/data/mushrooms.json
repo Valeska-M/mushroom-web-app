@@ -1,0 +1,99 @@
+{
+    "parasol": {
+        "name": "Parasol",
+        "synonyms": "Riesenschirmling, Riesenschirmpilz, Paukenschläger, Paukenschleger, Gemeiner Riesenschirmling, Gugermukken, Dunkler Parasol, Schulmeisterpilz, Eulchen, Großer Schirmling",
+        "scientific": "MACROLEPIOTA PROCERA (SYN. MASTOCEPHALUS PROCERUS, LEPIOTA PROCERA, LEPIOTOPHYLLUM PROCERUM, MACROLEPIOTA PERMIXTA, MACROLEPIOTA PROCERA F. FULIGINOSA)",
+        "edibility": "Hervorragender Speisepilz",
+        "features": {
+            "Geruch": "Angenehm nussartig.",
+            "Geschmack": "Angenehm nussartig, mild.",
+            "Hut": "3-25 (30) cm Ø, hellbraun, mit gezonten, weichen, wolligen Schüppchen, Rand behangen.",
+            "Fleisch": "Weich, hellbraun, gelbbraun, faserig im Stiel, weiß.",
+            "Stiel": "6-30 (40) cm lang, 2-7 (9) cm Ø dick, Untergrund weißlich bis hellbräunlich, dunkelbrauner Natterung, schlank, zäh, faserig. Bei jungen Parasolen kann die Stielbasis wie ein breiter Teller sein. Je größer der Pilz wird, umso mehr baut sich später der Teller ab.",
+            "Ring": "Wollig-weißlich, doppelrandig, verschiebbar am Stiel, roh hat er einen nussartigen, angenehmen Geschmack.",
+            "Lamellen": "Weiß, frei, weich.",
+            "Sporenpulverfarbe": "Weiß (12-18 x 9-12 µm, ellipsoid geformt). Mikroskopisch sind alle Riesenschirmlinge sehr ähnlich, weshalb besonders auf alle makroskopischen Merkmale geachtet werden soll.",
+            "Vorkommen": "Mischwälder, Waldränder, Waldwege und Heiden, Folgezersetzer, Frühsommer bis Spätherbst.",            
+            "Gattung": "Schirmlinge-Riesenschirmlinge.",
+            "Verwechslungsgefahr": "Rußbrauner Riesenschirmpilz, Safranschirmling, Keulenstieliger Garten-Safranschirmling, Ackerschirmpilz, Jungfernschirmling, Schlanker Riesenschirmling, Sternschuppiger Riesenschirmpilz, Gift-Riesenschirmling (Gartenschirmling), Haselbrauner Schirmling, Fuchsbräunlicher Schirmling.",
+            "Bemerkung": "Name Parasol: Para (Gegen, Neben) sol (Sonne) = Sonnenschirm. Wenn auf Komposthaufen oder im Garten Riesenschirmlinge wachsen – nicht verwenden! Es könnte der Gift-Riesenschirmling (Gartenschirmling) sein. Dieser Pilz löst schwere Magen-Darm-Störungen aus. Er rötet wie der Safranschirmling. Bei allen Riesenschirmlingen muss der Ring verschiebbar sein, da es sonst kein Riesenschirmling ist. Wenn der Ring bislang nicht ersichtlich ist, mit den Fingern den Ring vom Hutrand lösen (zuerst 2-3 mm etwas einritzen und dann versuchen es abzusetzen), der jetzt entstandene breite Ring muss verschiebbar sein. Finger weg von kleinen Schirmlingen ohne verschiebbaren Ring – viele tödliche Arten sind in dieser Gattung! Z. B. Haselbrauner Schirmling oder Fuchsbräunlicher Schirmling – diese Arten sind tödlich giftig.",
+            "Varietäten zum Parasol": "Rußbrauner Riesenschirmling (MACROLEPIOTA PROCERA VAR. FULIGINOSA) = dunklen Hut, Stiel nur wenig genattert, Hut dicht mit feinen Flocken bedeckt oder der Rötende Riesenschirmling (MACROLEPIOTA PERMIXTA) = Fleisch verfärbt sich im Stiel rötlich, Hutoberfläche verfärbt sich bei Verletzung weinrötlich. Diese beiden Arten sind ebenso essbar, aber seltener, RL Schweiz (VU = verletzlich).",
+            "Gifthinweise": "Schwermetall-Vergiftung, Hämolytische Anämie",
+            "Relativer Speisewert": "Schweiz: Marktfähig; DGfM: Positivliste Speisepilz; 123pilze: Relative Wertigkeit 1.",
+            "Zubereitung": "Für jede Zubereitung geeignet (außer roh), am besten wie Schnitzel panieren und braten! Er kann ungenügend gegart Magen-Darm-Beschwerden hervorrufen, deshalb gut erhitzen!"
+        },
+        "pictures": ["assets/images/parasol.jpg", "assets/images/parasol_1.jpg", "assets/images/parasol_2.jpg", "assets/images/parasol_3.jpg", "assets/images/parasol_4.jpg"]
+    },
+    "steinpilz": {
+        "name": "Steinpilz",
+        "synonyms": "Gemeiner Steinpilz, Fichtensteinpilz, Pilftling, Herrenpilz, Steini, Beisserl, Steinbott, Dobberniggl, Weizerl, Dobernikel, Dobanickl, Pfunscha, Fichtl, Braunwoidzerl, Braunkopf, Doberling, Bols, Edelpilz, Herrenschwamm, Küefotzn, Pilster, Pilzl, Pülstling, Pülzl, Saupilz, Pülzling, Stein-Röhrling, Worzel, Steinkopf, Steinbürstling, Woazerl, Woidzerl, Woizerl, Püz",
+        "scientific": "BOLETUS EDULIS (SYN. BOLETUS EDULIS VAR. ARENARIUS, BOLETUS EDULIS VAR. ARCTICUS, BOLETUS EDULIS VAR. GRANDEDULIS, BOLETUS RETICULATUS VAR. CITRINUS, BOLETUS EDULIS BETULICOLA, BOLETUS EDULIS F. QUERCICOLA)",
+        "edibility": "Hervorragender Speisepilz",
+        "features": {
+            "Geruch": "Sehr angenehm, pilzig.",
+            "Geschmack": "Mild, angenehm pilzig, einer der wenigen roh essbaren Pilze.",
+            "Hut": "4-20 (25) cm Ø, wildlederartig braun, haselnussbraun, Rand lange gerollt und meist weiß.",
+            "Fleisch": "Weißlich, nicht verfärbend, unter der Huthaut kurze rotbräunliche Zone nicht wie beim Sommersteinpilz weiß. Der Kiefernsteinpilz hat ebenfalls diese rötliche Verfärbung unter der Huthaut.",
+            "Stiel": "Weißlich, bräunlich überfasert. Der Stiel besitzt ein weißes, im Alter bräunliches Netz!",
+            "Röhren": "Weißlich, gelblich, gelbgrün, später olivgrün, vereinzelt auf Druck bläulich bis grünlich verfärbend. Ganz jung sind die Röhren beim Steinpilz verschlossen, ähnlich wie verschlossene Bienenwaben. Beim Gallenröhrling ist dies nicht der Fall.",
+            "Sporenpulverfarbe": "Olivbraun (12,4-19,2 x 4,5-5,5 µm, Basidien 30-48 x 8-10 µm, keulig, besitzen vier oder seltener zwei Sterigmata, Basalschnallen fehlen. Pleurozystiden + Cheilozystiden 35-70 x 5,5-10 µm, spindelig schlank bis flaschenförmig. Variable Kaulozystiden im Stielnetz, HDS-Hyphen ca. 3-6 µm breit).",
+            "Vorkommen": "Mischwald, gern Fichten, Tannen, Kiefern, seltener bei Eichen, Hainbuchen, Linden, Kastanien, Buchen, Birken und anderen Laubbäumen, Symbiosepilz, Frühsommer bis Spätherbst.",
+            "Gattung": "Röhrlinge, Dickröhrlinge.",
+            "Verwechslungsgefahr": "Gallenröhrling, Maronenröhrling oder mit anderen Steinpilzarten wie Sommersteinpilz, Kiefernsteinpilz, Gelbfleckiger Steinpilz, Birkensteinpilz, Zitronenhütiger Steinpilz, Blasshütiger Röhrling.",
+            "Vergleich": "Gallenröhrling: Jung, mit weißen geöffneten Röhren und bräunlichem Stiel. Im Alter mit rosa Röhren.\nMaronenröhrling: Jung, mit gelblichen Röhren und bräunlichem Stiel. Im Alter mit grüngelben Röhren.\nSteinpilz: Jung, mit weißen, bienenwabenartig verschlossenen Röhren, meist relativ weißlicher Stiel. Im Alter mit grüngelben Röhren.\nGutes Merkmal um den Gemeinen Steinpilz von anderen Arten zu erkennen, ist der weiße Hutrand und die rötlich-braune Farbzone unter der Huthaut. Bei Pilzen ohne Netz am Stiel oder kaum sichtbarem Netz am Stiel mit gelblichen Röhren ist eine Geschmacksprobe die sicherste Entscheidung, ob es nicht doch ein ungenießbarer bitterer Gallenröhrling oder ein Wurzelnder Bitterröhrling ist.",
+            "Bemerkung": "Der Steinpilz ist einer der beliebtesten Speisepilze überhaupt. Der Steinpilz ist ein guter Anzeiger für Mehlräslinge, d. h. wo Steinpilze wachsen können Mehlräslinge gefunden werden. Diese Pilzart nimmt kaum jemand mit. Dieser Tipp gilt natürlich umgekehrt ebenso: Steinpilzanzeiger Nr. 1 ist der Mehlräsling. Steinpilzanzeiger Nr. 2 ist der Pfefferröhrling. Steinpilzanzeiger Nr. 3 ist der Fliegenpilz. Und wenn alle diese Pilzarten zu finden sind, muss man nur noch nach Steinpilzen Ausschau halten!",
+            "Chemische Reaktion": "Fleisch mit Kaliumhydroxid (KOH) blass braun, mit Melzers ocker mit graugrüner Schattierung.",
+            "Relativer Speisewert": "Schweiz: Marktfähig; DGfM: Positivliste Speisepilz; 123pilze: Relative Wertigkeit 1."
+        },
+        "pictures": ["assets/images/steinpilz.jpg", "assets/images/steinpilz_1.jpg", "assets/images/steinpilz_2.jpg", "assets/images/steinpilz_3.jpg", "assets/images/steinpilz_4.jpg", "assets/images/steinpilz_5.jpg", "assets/images/steinpilz_6.jpg", "assets/images/steinpilz_7.jpg"]
+    },
+    "echter-pfifferling": {
+        "name": "Echter Pfifferling",
+        "synonyms": "Gelblättriger Pfifferling, Eierleistling, Dotterpilz, Echter Gelbling, Eierpilz, Recherl, Rehfüßchen, Eierschwammerl, Galluschel, Göbn, Gähling, Gänschen, Gallitschel, Gänsel, Schweinsfüsserl, Geelchen, Gehling, Gelbchen, Rilling, Gelbhänel, Gemeiner Pfifferling, Gelberla, Zechling, Marillenschwamm, Gelböhrchen, Gelbschwammerl, Nagerl, Goassrehling, Pfefferling, Rehgeiss, Rehgaißl, Rehling, Schweinsfüßerl, Röllchen, Zederling, Pfiffi", 
+        "scientific": "CANTHARELLUS CIBARIUS (SYN. CANTHARELLUS NEGLECTUS, CHANTEREL CHANTARELLUS, CANTHARELLUS CIBARIUS VAR. ALBIDUS, CANTHARELLUS PALLENS, MERULIUS CIBARIUS)",
+        "edibility": "Hervorragender Speisepilz",
+        "features": {
+            "Geruch": "Aromatisch, obstartig frisch pilzig.",
+            "Geschmack": "Aromatisch, leicht schärflich, pfefferig.",
+            "Hut": "2-8 (10) cm Ø, blassgelb bis dottergelb, zitronengelb. Jung ist der Hut halbkugelig bis gewölbt mit eingerolltem Rand. Im Alter breitet er sich aus, wird in der Mitte tief trichterförmig vertieft und der Rand wellig bis unregelmäßig gelappt.",
+            "Fleisch": "Weißlich bis blassgelb, nur die äußerste Randschicht ist kräftig gelb. Wenn man es bricht, splittert es eher, statt faserig zu reißen.",
+            "Stiel": "Gelb, fest, er geht meist fließend und konisch in den Hut über. Er ist oft verbogen, zur Basis hin verjüngt und voll.",
+            "Leisten": "Weit am Stiel herablaufend, gegabelt, aderig verbunden. Anstelle von Lamellen besitzt der Pfifferling dicke, stumpfe Leisten. Diese Leisten sind unregelmäßig gegabelt, durch Queradern miteinander verbunden (anastomosierend) und laufen weit am Stiel herab. Sie lassen sich im Gegensatz zu Lamellen nicht leicht vom Hutfleisch ablösen.",
+            "Sporenpulverfarbe": "Hellgelb (6-11 x 4-7 µm, ellipsoid, glatt und dünnwandig, oft kleine Öltröpfchen, hyalin, J-. Basidien lang gestreckt, schmal keulenförmig. Eine Besonderheit bei Pfifferlingen ist die Anzahl der Sterigmen pro Basidie. Während die meisten klassischen Lamellenpilze konstant 4-sporig sind, weisen Pfifferlings-Basidien 2 bis 6, meist 4-5 Sterigmen auf. Cheilo- noch Pleurozystiden fehlen. HDS besteht aus einer Schicht unregelmäßig verflochtener, zylindrischer Hyphen. Die Endzellen sind meist abgerundet und nicht auffällig differenziert. Ein sehr wichtiges Mikromerkmal zur Abgrenzung innerhalb der Gattung: Hier sind an fast allen Hyphensepten deutliche Schnallen vorhanden).",
+            "Vorkommen": "Mischwald, Symbiosepilz, Frühling bis Spätherbst, regional oft sehr häufig.",
+            "Gattung": "Leistlinge (alle Leistlinge sind essbar).",
+            "Verwechslungsgefahr": "Falscher Pfifferling, Ölbaumtrichterling, Zitronengelber Raukopf, Amethystschuppiger Pfifferling, Samtpfifferling, Blasser Pfifferling, Brauner Afterleistling, Schwärzender Leistling, Flämmiger Saftling, Spitzgebuckelter Raukopf, Löwengelber Raukopf, Rhabarberfüßiger Raukopf der nach Maschinenöl riecht.",
+            "Chemische Reaktion": "Hut und Fleisch Verfärbung: Eisensulfat sehr schwache, schmutzig-grünliche bis olivgrau. KOH neutral bis schwach gelblich.",
+            "Bemerkung": "Der Falsche Pfifferling hat keinen pfeffrigen Geschmack und meist mehr orange Farbtöne. Außerdem leicht verschiebbare und vom Fleisch leicht ablösbare Lamellen. Der auf Holz wachsende giftige Ölbaumtrichterling (OMPHALOTUS OLEARIUS), größtenteils nur im mediterranen Raum vorkommend, hat nur wenige gegabelte Lamellen und dunklere, orangerote Farben.\nTipp zur Reinigung der Pfifferlinge: Grob vom Schutz entfernen, Pfifferlinge mit Wasser spülen, die feuchten Pilze in Speisemehl schwenken, nochmals in das Wasser geben, restlicher Schmutz wird mit dem Mehl im Wasser gelöst.\nPfifferlingssprüche: Wenn jemand den Spruch sagt: „Du bist keinen Pfifferling wert“, so stammt diese Aussage aus dem alten Bauerntum. Knechte, die nur Pilze statt Fleisch bekamen, hatten aufgrund des geringen Kaloriengehaltes der Pilze nur geringe Ausdauer. Das war normal so – Fleisch gab es in diesen schlechten Zeiten nicht immer. Hatten Knechte genügend Kohlenhydrathaltiges zu essen, waren aber nur zu faul zum Arbeiten, so lag die Ursache nur an der Einstellung des Knechtes. Deshalb die Aussage: Du bist nicht mal einen Schwammerl (Pfifferling) wert.\nUnd im Übrigen gilt ohnehin: Nach Pilzgenuss kann man zwar weit sehen (viele Vitamine und Mineralien), aber leider nicht weit laufen = geringe Menge Kohlenhydrate, Fett und Eiweiß. Mag bestimmt in der heutigen Zeit bei Übergewicht nicht ungesund sein.",
+            "Vitalpilz (Heilpilz)": "Gilt als Vitalpilz (Heilpilz) in der Naturheilkunde oder in der traditionellen chinesischen und japanischen Medizin für: In allen Pfifferlings-Arten wurden Wirkstoffe entdeckt, die antiviral, antioxidativ, krebshemmend und antibiotisch wirken. Obendrein haben sie einen hohen Vitamin- und Mineraliengehalt.",
+            "Relativer Speisewert": "Schweiz: Marktfähig; DGfM: Positivliste Speisepilz; 123pilze: Relative Wertigkeit 1."
+        },
+        "pictures": ["assets/images/pfifferling.jpg", "assets/images/pfifferling_1.jpg", "assets/images/pfifferling_2.jpg", "assets/images/pfifferling_3.jpg", "assets/images/pfifferling_4.jpg", "assets/images/pfifferling_5.jpg"]
+    },
+    "fliegenpilz": {
+        "name": "Fliegenpilz",
+        "synonyms": "Roter Fliegenpilz, Fliegentod, Narrenschwamm, Kasschwamm, Pünktchenpilz",
+        "scientific": "AMANITA MUSCARIA (AMANITA MUSCARIA SSP. MUSCARIA)",
+        "edibility": "Giftiger Pilz",
+        "features": {
+            "Geruch": "Pilzig, angenehm.",
+            "Geschmack": "Mild, pilzig, angenehm.",
+            "Hut": "3-18 (20) cm Ø, jung gelblich, rot, orangerot, mit weißen flockigen Schüppchen, die vom Regen abgewaschen sein können.  Junge Pilze sind kugelig oder halbkugelig und komplett von einer weißen Hülle (Velum) umschlossen. Später schirmt der Hut auf und wird flach ausgebreitet, im Alter manchmal leicht trichterartig verbogen. Auf der Hutoberfläche befinden sich die charakteristischen weiße bis hellgelbe Warzen oder Tupfen. Dabei handelt es sich um Reste der Gesamthülle (Velum universale). Hinweis! Starker Regen kann diese Flocken komplett abwaschen, sodass der Hut glatt und rein rot zurückbleibt! Hutrand alt leicht gerieft.",
+            "Fleisch": "Weiß, unter der Huthaut hat er eine gelbe bis orangegelbe Zwischenschicht.",
+            "Stiel": "7-16 (20) cm lang, 2-4 (6) cm Ø dick, weiß bis hellgelb mit warziger Basis, mit weißen, gürtelförmigen Velumzonen. Ansonsten ist er zylindrisch, glatt oder leicht flockig-faserig. Im Inneren jung voll, später hohl.",
+            "Ring": "Weißlich bis gelblich, +/- am Rand gelblich gezackt, schlapp herabhängend, oft gerieft.",
+            "Lamellen": "Weiß bis hellgelblich, frei bis +/- fein angewachsen.",
+            "Sporenpulverfarbe": "Weiß (8-13 x 5-9,5 µm, breitelliptisch bis oval, glatt, hyalin. Basidien 40-60 x 10-15 µm, meist viersporig, keulenförmig, an der Basis mit Schnallen. Zystiden: Echte Pleurozystiden fehlen. Cheilocystiden bzw. Marginalzellen oft blasig, subglobos, fast kugelig oder keulig geformt, leicht flockig. HDS: Die oberste Schicht besteht aus gelatinisierten, dünnen Hyphen, was dem Hut bei Feuchtigkeit seine leicht schmierige oder fettige Textur verleiht. Velum universale aus einer Mischung aus kugeligen Elementen und fädigen Hyphen. Das Übergewicht an Sphaerozyten sorgt dafür, dass das Velum leicht zerfällt und als Flocken abwischbar ist.",
+            "Vorkommen": "Mischwald, Symbiosepilz, Frühling bis Spätherbst.",
+            "Gattung": "Wulstlinge (Knollenblätterpilzartigen = AMANITAS).",
+            "Verwechslungsgefahr": "Gelbflockiger Fliegenpilz, Orangegelber Fliegenpilz, Kaiserling, Gelber Fliegenpilz.",
+            "Vergleich": "Kleine Fliegenpilze können mit kleinen Perlpilzen verwechselt werden. Die Varietät der Orangegelber Fliegenpilz (AMANITA MUSCARIA VAR. AUREOLA) hat orange Hutfarben. In südlichen Regionen gibt es den köstlichen Kaiserling, man beachte immer die entsprechenden Merkmale! Gelbe Randzone zwischen Hut und Fleisch beim Durchschnitt – schönes Merkmal! Es gibt eine außergewöhnliche gelbe Varietät des Fliegenpilzes AMANITA MUSCARIA VAR. FORMOSA (Gelber Fliegenpilz), die rötlichen Töne der Huthaut sind durch überwiegende Gelbtöne ersetzt.",
+            "Bemerkung": "AMANITA MUSCARIA variiert in seiner Morphologie erheblich, und viele Mykologen erkennen mehrere Unterarten oder Varietäten innerhalb der Art an. Es werden drei Unterarten beschrieben: AMANITA MUSCARIA SSP. MUSCARIA mit weißlichen Schuppen, AMANITA MUSCARIA SSP. AMERICANA mehr gelbgrüne bis orangegelbe Huthaut und kleinen Schuppen und AMANITA MUSCARIA SSP. FLAVIVOLVATA mit gelben Schuppen. Die sonstigen Eigenschaften sind zueinander gleichwertig. Der Fliegenpilz ist gemeinsam mit Pfefferröhrling und Mehlräsling guter Steinpilzanzeiger! Er galt früher als Hausmittel gegen Fliegen, daher sein Name: Zucker, Milch und klein zerhackte Fliegenpilze in einer Schale aufgestellt, soll Fliegen töten. Optisch möge es so ausgesehen haben, aber es tötete die Fliegen nicht wirklich. Die Hälfte aller Fliegen wachte nach einigen Stunden wieder auf. Sie waren nur betäubt = Fliegen-Narkotikum für Tierschützer.",
+            "Besonderheit": "Verursacht starke Magen-Darmstörungen, Kreislaufversagen, Atemlähmung, wenn er in größeren Mengen genossen wird! Außerdem bewirkt er Bewusstseinsstörungen, Wahnvorstellungen, Euphorie und Psychosen. Der Fliegenpilz existiert in zahlreichen Varietäten und Formen mit gleichen Wirkstoffen. Vor Kostversuchen wird generell gewarnt!",
+            "Vitalpilz (Heilpilz)": "Gilt als Vitalpilz (Heilpilz) in der Naturheilkunde oder in der traditionellen chinesischen und japanischen Medizin für: Wurde für bösartige Geschwüre und Nervenleiden verwendet! In Russland wird er in Flaschen vergoren und als Balsam gegen Erkältungen und Schmerzen verwendet. Man beachte aber das die Inhaltsstoffe nur mit Wasser lösbar sind und nicht mit Alkohol oder Ölen. Erst nach dem Lösungvorgang kann mit Alkohol konserviert werden.",
+            "Knollenform": "Mit Warzengürtel, rübenartige Knolle, knollig verdickt und Kindersöckchen, ohne Scheide.",
+            "Gifthinweise": "Pantherina-Syndrom"
+        },
+        "pictures": ["assets/images/fliegenpilz.jpg", "assets/images/fliegenpilz_1.jpg", "assets/images/fliegenpilz_2.jpg", "assets/images/fliegenpilz_3.jpg", "assets/images/fliegenpilz_4.jpg", "assets/images/fliegenpilz_5.jpg", "assets/images/fliegenpilz_6.jpg", "assets/images/fliegenpilz_7.jpg"]
+    }
+}
