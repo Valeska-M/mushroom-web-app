@@ -103,8 +103,8 @@ label {
     transition: width 0.5s, height 0.5s, margin 0.5s;
 
     animation: shrink-logo;
-    animation-timeline: scroll();
-    animation-range: exit 0 exit var(--height-header-top-part);
+    animation-timeline: scroll(root block);
+    animation-range: 0 var(--height-header-top-part);
     animation-fill-mode: both;
 }
 
