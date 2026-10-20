@@ -284,61 +284,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // #endregion
 
     // ==========================================================================================
-    // #region load mushrooms
+    // #region update search URL
     // ==========================================================================================
     
-    // for now: load all mushrooms from json file
-    let allMushrooms;
-    const results = document.querySelector('#results'); // parent for the mushroom tiles
-
-    async function loadMushrooms() {
-        const response = await fetch("assets/data/mushrooms.json");
-        allMushrooms = await response.json();
-        Object.entries(allMushrooms).forEach(([id, data]) => createTile(id, data));
-    }
-     
-    function createTile(id, data) {
-        const mushroomTile = document.createElement("div");
-        mushroomTile.id = id;
-        mushroomTile.classList.add("mushroom-tile");
-        // transform edibility into class for hr-element
-        let edibilityClass;
-        if (data.edibility === "Hervorragender Speisepilz") {
-            edibilityClass = "great";
-        } else if (data.edibility === "Essbarer Pilz") {
-            edibilityClass = "edible";
-        } else if (data.edibility === "Ungenießbarer Pilz") {
-            edibilityClass = "inedible";
-        } else if (data.edibility === "Giftiger Pilz") {
-            edibilityClass = "toxic";
-        } else {
-            edibilityClass = "deadly";
-        }
-        // get first three synonyms
-        const synonymList = data.synonyms.split(",");
-        let synonyms = synonymList.slice(0,3).join(",")
-        if (synonymList.length > 3) {
-            synonyms += ", ...";
-        }
-        // create inner HTML
-        mushroomTile.innerHTML = `
-            <img src="${data.pictures[0]}">
-            <hr class="${edibilityClass}">
-            <p class="name">${data.name}</p>
-            <p class="synonyms">${synonyms}</p>
-        `;
-        // add event listener
-        mushroomTile.addEventListener('click', () => openProfile(id));
-        // add to parent
-        results.appendChild(mushroomTile);
-    }
-    
-    loadMushrooms();
-    
-    // for later to get the right mushrooms out of the database
+    // turn filter into query parameters
     const applyFilter = document.querySelector('#apply-filter');
+    let searchQueryParams = "";
 
-    function getQueryParams() {
+    function getSearchQueryParams() {
         const params = new URLSearchParams;
         
         // text input
@@ -371,8 +324,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return params;
     }
     
+    function updateSearchURL() {
+        searchQueryParams = getSearchQueryParams().toString();
+        const url = new URL(window.location);
+        url.search = searchQueryParams;
+        history.pushState({}, "", url);
+    }
+
     applyFilter.addEventListener('click', () => {
-        console.log(getQueryParams().toString());
+        updateSearchURL();
     });
 
     // #endregion
@@ -401,9 +361,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.querySelector('body');
     let galleryPictures;
 
-    function openProfile(mushroomId) {
+    function openProfile(mushroomId, newState = false) {
         searchScrollPosition = window.scrollY;
-        // add loading bar?
+        if (newState) {
+            history.pushState({}, "", `?pilz=${mushroomId}`);
+        }
         fillProfile(mushroomId);
         mushroomSearch.hidden = true;
         mushroomProfile.hidden = false;
@@ -470,13 +432,16 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryPictures = document.querySelectorAll('.gallery-pic');
     }
 
-    function closeProfile() {
+    function closeProfile(newState = false) {
         mushroomSearch.hidden = false;
         mushroomProfile.hidden = true;
         window.scrollTo(0, searchScrollPosition);
+        const url = new URL(window.location);
+        url.search = searchQueryParams
+        history.pushState({}, "", url);
     }
 
-    closeProfileButton.addEventListener('click', closeProfile);
+    closeProfileButton.addEventListener('click', () => {closeProfile(true)});
 
     // handle visibility of gallery arrows
     const galleryArrowL = document.querySelector('#gallery-arrow-l');
@@ -577,6 +542,86 @@ document.addEventListener('DOMContentLoaded', function() {
     zoomedPictureClose.addEventListener('click', () => {
         zoomedPictureView.hidden = true;
         body.classList.remove('no-scroll');
+    })
+
+    // #endregion
+
+    // ==========================================================================================
+    // #region read URL => open profile or load mushrooms
+    // ==========================================================================================
+    
+    // functionality to load all mushrooms from json file
+    let allMushrooms;
+    const results = document.querySelector('#results'); // parent for the mushroom tiles
+
+    async function createAllTiles() {
+        await loadMushroomData();
+        Object.entries(allMushrooms).forEach(([id, data]) => createTile(id, data));
+    }
+    
+    async function loadMushroomData() {
+        const response = await fetch("assets/data/mushrooms.json");
+        allMushrooms = await response.json();
+    }
+     
+    function createTile(id, data) {
+        const mushroomTile = document.createElement("div");
+        mushroomTile.id = id;
+        mushroomTile.classList.add("mushroom-tile");
+        // transform edibility into class for hr-element
+        let edibilityClass;
+        if (data.edibility === "Hervorragender Speisepilz") {
+            edibilityClass = "great";
+        } else if (data.edibility === "Essbarer Pilz") {
+            edibilityClass = "edible";
+        } else if (data.edibility === "Ungenießbarer Pilz") {
+            edibilityClass = "inedible";
+        } else if (data.edibility === "Giftiger Pilz") {
+            edibilityClass = "toxic";
+        } else {
+            edibilityClass = "deadly";
+        }
+        // get first three synonyms
+        const synonymList = data.synonyms.split(",");
+        let synonyms = synonymList.slice(0,3).join(",")
+        if (synonymList.length > 3) {
+            synonyms += ", ...";
+        }
+        // create inner HTML
+        mushroomTile.innerHTML = `
+            <img src="${data.pictures[0]}">
+            <hr class="${edibilityClass}">
+            <p class="name">${data.name}</p>
+            <p class="synonyms">${synonyms}</p>
+        `;
+        // add event listener
+        mushroomTile.addEventListener('click', () => openProfile(id, true));
+        // add to parent
+        results.appendChild(mushroomTile);
+    }
+
+    // load page depending on query parameters
+    async function loadPage(firstLoad = false) {
+        const queryParams = new URLSearchParams(window.location.search);
+        const mushroomId = queryParams.get("pilz");
+        if (firstLoad) {
+            await loadMushroomData();
+            createAllTiles();
+        }
+        console.log("Params: ", queryParams, " , ID: ", mushroomId);
+        if (mushroomId && allMushrooms[mushroomId]) {
+            openProfile(mushroomId);
+        } else {
+            closeProfile();
+        }
+    }
+    
+    loadPage(true);
+
+    // reload page in case of popstate
+    window.addEventListener('popstate', () => {
+        console.log("loadPage");
+        loadPage();
     })
 
     // #endregion
