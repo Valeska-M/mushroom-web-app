@@ -1,0 +1,150 @@
+<!-- #region head -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Suchplattform für Pilze" content="Identifiziere heimische Pilzarten anhand ihrer Beschreibung und Bilder">
+   <title>Pilzsuche</title>
+   <link rel="icon" href="assets/icons/logo-simpel.png">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@400..700&icon_names=arrow_back_ios,close,groups,info,keyboard_arrow_down,menu,search,single_arrow,tune" />
+   <link rel="stylesheet" href="styles.css">
+</head>
+<!-- #endregion -->
+
+<!-- #region header -->
+<body>
+
+    <header id="sticky-header">
+        <img id="header-logo" src="assets/icons/logo-schrift.png">
+
+        <label id="desktop-menu-button">
+            <span id="open-menu-symbol" class="material-symbols-rounded" type="button" aria-label="Menü">menu</span>
+            <span id="close-menu-symbol" class="material-symbols-rounded" type="button" aria-label="Menü schließen">close</span>
+            <input type="checkbox">
+        </label>
+        
+        <nav id="main-navigation">
+            <ul class="nav-list">
+                <li class="nav-element">
+                    <a href="index.html">
+                        <span class="material-symbols-rounded">search</span>
+                        Suche
+                    </a>
+                </li>
+                <li class="nav-element">
+                    <a href="info.html">
+                        <span class="material-symbols-rounded">info</span>
+                        Informationen
+                    </a>
+                </li>
+                <li class="nav-element">
+                    <a id="link-current-page" href="community.html">
+                        <span class="material-symbols-rounded">groups</span>
+                        Community
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+<!-- #endregion -->
+
+<!-- #region content -->
+    <main>
+        <nav id="sub-menu">
+            <a href="index.html">Startseite</a>
+            <p>/</p>
+            <p id="current-page-name">Community</p>
+        </nav>
+        
+        <div class="information-tile tile-pic-right">
+            <img class="information-tile-pic" src="assets/images/basket_1.jpg">
+            <div class="information-tile-content">
+                <p class="information-tile-title" id="instructions">
+                    Über uns
+                </p>
+                <p class="information-tile-text">
+                    Wir sind Pilzsachverständige aus dem Bayrischen Wald, die es sich zur Aufgabe bemacht haben, Pilzwissen für alle zugänglich zusammenzutragen. Neben der Suchmaschine haben wir auf unserer Hauptseite viele weitere Inhalte, z.B. Rezepte und aktuelle Seminartermine.
+                </p>
+                <div class="information-tile-links">
+                    <button>Zur Hauptseite 123Pilze</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tile-without-headline">
+            <img class="tile-without-headline-pic" src="/assets/images/money.jpg">
+            <div class="information-tile-content">
+                <p>Du willst unsere Arbeit unterstützen?<br>Wir sind dankbar für jede Spende.</p>
+                <div class="information-tile-links">
+                    <button class="bright-button">PayPal</button>
+                    <button class="bright-button">Bankverbindung</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="information-tile tile-pic-left">
+            <img class="information-tile-pic" src="assets/images/scene_2.jpg">
+            <div class="information-tile-content">
+                <p class="information-tile-title" id="basics">
+                    Unser Pilzforum
+                </p>
+                <p class="information-tile-text">
+                    Pilz nicht gefunden, Pilzforum hilft! Viele Pilzexperten ziehen an einen Strang und helfen dir bei der Bestimmung oder bei Pilzfragen aller Art weiter.
+                </p>
+                <div class="information-tile-links">
+                    <button>Zum Pilzforum</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="information-tile tile-pic-right">
+            <img class="information-tile-pic" src="assets/images/books.jpg">
+            <div class="information-tile-content">
+                <p class="information-tile-title" id="basics">
+                    Buchshop
+                </p>
+                <p class="information-tile-text">
+                    All unsere Pilzbücher sind in unserem Buchshop erhältlich.
+                </p>
+                <div class="information-tile-links">
+                    <button>Zum Buchshop</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="information-tile tile-pic-left">
+            <img class="information-tile-pic" src="assets/images/in_hands_2.jpg">
+            <div class="information-tile-content">
+                <p class="information-tile-title" id="basics">
+                    Pilzsachverständige finden
+                </p>
+                <p class="information-tile-text">
+                    Expert*innen in deiner Nähe kannst du über die Seite der Deutschen Gesellschaft für Mykologie finden.
+                </p>
+                <div class="information-tile-links">
+                    <button>Zur Expertensuche</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tile-without-headline">
+            <img class="tile-without-headline-pic" src="/assets/images/mistake.jpg">
+            <div class="information-tile-content">
+                <p><b>Fehler gefunden?</b><br>Wenn ihr einen Text- oder Bildfehler entdeckt habt, sendet uns gerne eine E-Mail. Wir bessern ihn sofort aus und sind euch sehr dankbar!<br>Schreibt uns eine E-Mail an <b>info@123pilze.de</b></p>
+            </div>
+        </div>
+        
+    </main>
+<!-- #endregion -->
+
+<!-- #region footer -->
+    <footer>
+        <a>Impressum</a>
+        <a>Urheberrecht</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- #endregion -->

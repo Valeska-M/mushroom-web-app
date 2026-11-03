@@ -1,0 +1,143 @@
+<!-- #region head -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="Suchplattform für Pilze" content="Identifiziere heimische Pilzarten anhand ihrer Beschreibung und Bilder">
+   <title>Pilzsuche</title>
+   <link rel="icon" href="assets/icons/logo-simpel.png">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@400..700&icon_names=arrow_back_ios,close,groups,info,keyboard_arrow_down,menu,search,single_arrow,tune" />
+   <link rel="stylesheet" href="styles.css">
+</head>
+<!-- #endregion -->
+
+<!-- #region header -->
+<body>
+
+    <header id="sticky-header">
+        <img id="header-logo" src="assets/icons/logo-schrift.png">
+
+        <label id="desktop-menu-button">
+            <span id="open-menu-symbol" class="material-symbols-rounded" type="button" aria-label="Menü">menu</span>
+            <span id="close-menu-symbol" class="material-symbols-rounded" type="button" aria-label="Menü schließen">close</span>
+            <input type="checkbox">
+        </label>
+        
+        <nav id="main-navigation">
+            <ul class="nav-list">
+                <li class="nav-element">
+                    <a href="index.html">
+                        <span class="material-symbols-rounded">search</span>
+                        Suche
+                    </a>
+                </li>
+                <li class="nav-element">
+                    <a id="link-current-page" href="info.html">
+                        <span class="material-symbols-rounded">info</span>
+                        Informationen
+                    </a>
+                </li>
+                <li class="nav-element">
+                    <a href="community.html">
+                        <span class="material-symbols-rounded">groups</span>
+                        Community
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+<!-- #endregion -->
+
+<!-- #region content -->
+    <main>
+        <nav id="sub-menu">
+            <a href="index.html">Startseite</a>
+            <p>/</p>
+            <p id="current-page-name">Informationen</p>
+        </nav>
+        
+        <div class="information-tile tile-pic-right">
+            <img class="information-tile-pic" src="assets/images/in_hands_1.jpg">
+            <div class="information-tile-content">
+                <p class="information-tile-title" id="instructions">
+                    Bedienungsanleitung
+                </p>
+                <p class="information-tile-text">
+                    Zur optimalen Nutzung der Suchmaschine sollte diese Bedienungsanleitung gelesen werden. Es bedarf etwas Übung mit diesem Programm, erst dadurch wird der Pilz richtig bestimmt werden können. Am besten ist es, wenn der Pilz vor einem liegt, so können alle Merkmale abgearbeitet werden und der richtige Pilz bleibt übrig. Viel Spaß bei der Ermittlung!<br>
+                </p>
+                <p class="information-tile-text">
+                    <strong>Wichtig:</strong> Die Pilzsuchmaschine ersetzt keine Pilzberatung durch einen qualifizierten Pilzberater, die ermittelten Pilze sollten in keinem Fall für Speisezwecke verwendet werden! Wir übernehmen keine Garantie für die Richtigkeit der Speisewertangaben, jegliche Haftung schließen wir generell aus.
+                </p>
+                <div class="information-tile-links">
+                    <button>Anleitung öffnen</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tile-without-headline">
+            <img class="tile-without-headline-pic" src="/assets/images/app.jpg">
+            <div class="information-tile-content">
+                <p>Lade unsere Pilz-App herunter:<br>mit Bilderkennung zur Identifikation der Arten!</p>
+                <div class="information-tile-links">
+                    <button class="bright-button">Für Apple</button>
+                    <button class="bright-button">Für Android</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="information-tile tile-pic-left">
+            <img class="information-tile-pic" src="assets/images/woods_1.jpg">
+            <div class="information-tile-content">
+                <p class="information-tile-title" id="basics">
+                    Grundwissen für Einsteiger
+                </p>
+                <p class="information-tile-text">
+                    Neben allgemeinen Informationen für Einsteiger in das Thema Pilze werden im Pilz-Glossar die wichtigsten Fachbegriffe definiert. Auch Antworten auf die häufigsten Fragen haben wir für Euch zusammengestellt.
+                </p>
+                <div class="information-tile-links">
+                    <button>Infos für Anfänger</button>
+                    <button>Pilz-Glossar</button>
+                    <button>FAQ</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="information-tile tile-pic-right">
+            <img class="information-tile-pic" src="assets/images/scene_1.jpg">
+            <div class="information-tile-content">
+                <p class="information-tile-title" id="basics">
+                    Weiterführende Informationen
+                </p>
+                <p class="information-tile-text">
+                    Im Laufe unserer Arbeit haben wir zu vielen Aspekten von Pilzen Wissen angesammelt und für Euch zusammengetragen.
+                </p>
+                <div class="information-tile-links">
+                    <button>Täublings-Reaktionen</button>
+                    <button>Pilzgifte</button>
+                    <button>Gattungen</button>
+                    <button>Pilz-Gerüche</button>
+                    <button>Vitalpilze</button>
+                    <button>Knollenformen</button>
+                    <button>Geschützte Pilze</button>
+                    <button>Wachstumsbedingungen</button>
+                    <button>Radioaktivität</button>
+                    <button>Haltbarmachung</button>
+                </div>
+            </div>
+        </div>
+
+        
+    </main>
+<!-- #endregion -->
+
+<!-- #region footer -->
+    <footer>
+        <a>Impressum</a>
+        <a>Urheberrecht</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- #endregion -->

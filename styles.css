@@ -208,18 +208,18 @@ label {
     font-size: 2rem;
 }
 
-#link-search {
+#link-current-page {
     font-weight: 700;
     color: var(--c-contrast-muted);
 }
 
-#link-search .material-symbols-rounded {
+#link-current-page .material-symbols-rounded {
     font-weight: 700;
 }
 /* #endregion */
 
 /*===============================================================================================
-    3. MAIN CONTENT
+    3. MAIN CONTENT FOR SEARCH
 ===============================================================================================*/
 
 /* #region layout */
@@ -921,7 +921,7 @@ label {
 /* #endregion */
 
 /*===============================================================================================
-    5. POPUP: MUSHROOM PROFILE
+    5. MUSHROOM PROFILE
 ===============================================================================================*/
 
 /* #region header */
@@ -1226,7 +1226,141 @@ label {
 /* #endregion */
 
 /*===============================================================================================
-    6. RESPONSIVE DESIGN
+    6. MAIN CONTENT INFO AND COMMUNITY PAGES
+===============================================================================================*/
+
+/* #region content */
+#sub-menu {
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap-s);
+    margin: var(--gap-m);
+    font-size: 1rem;
+    color: var(--c-contrast-muted);
+}
+
+#sub-menu a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#current-page-name {
+    font-weight: 700;
+}
+
+.information-tile {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: var(--c-main);
+    margin-top: var(--gap-l);
+    box-shadow: var(--subtle-shadow);
+    padding-bottom: var(--gap-m);
+    margin-bottom: var(--gap-m);
+    justify-items: center;
+}
+
+.tile-pic-right {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    margin-right: var(--gap-m);
+    padding-right: var(--gap-m);
+    padding-left: var(--gap-l);
+}
+
+.tile-pic-left {
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    margin-left: var(--gap-m);
+    padding-left: var(--gap-m);
+    padding-right: var(--gap-l);
+}
+
+.information-tile-pic {
+    width: min(300px, 100%);
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--border-radius);
+    position: relative;
+    top: -1rem;
+    box-shadow: var(--subtle-shadow);
+}
+
+.information-tile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-m);
+    margin: var(--gap-s) var(--gap-m);
+}
+
+.information-tile-title {
+    font-size: var(--font-large);
+    font-weight: 700;
+}
+
+.information-tile-links {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--gap-s);
+}
+
+.information-tile-links button {
+    font-size: 1rem;
+    padding: var(--gap-s) var(--gap-m);
+    background-color: var(--c-accent-neutral);
+    color: white;
+    border-radius: 999px;
+}
+
+.tile-without-headline {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    padding: var(--gap-m) 0;
+    background-color: var(--c-accent-neutral-transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tile-without-headline-pic {
+    width: 200px;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    object-fit: cover;
+    object-position: center;
+    margin: var(--gap-m);
+}
+
+.tile-without-headline .information-tile-content p {
+    text-align: center;
+}
+
+.tile-without-headline .bright-button {
+    background-color: var(--c-main);
+    color: var(--c-contrast);
+}
+/* #endregion */
+
+/*===============================================================================================
+    7. Footer
+===============================================================================================*/
+
+/* #region footer */
+footer {
+    display: flex;
+    flex-direction: row;
+    margin-top: var(--gap-m);
+    gap: var(--gap-l);
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--c-contrast-muted);
+}
+/* #endregion */
+
+/*===============================================================================================
+    8. RESPONSIVE DESIGN
 ===============================================================================================*/
 
 /* #region header, footer & menu */
@@ -1272,6 +1406,10 @@ label {
     #sticky-header:has(input:checked) #header-logo {
         width: calc(var(--width-header-logo) * 0.2); 
         margin-left: calc(var(--height-header)*0.1);
+    }
+
+    footer {
+        padding-bottom: 2rem;
     }
 
 /* #endregion */
@@ -1412,11 +1550,64 @@ label {
             grid-column: span 3;
         }
     }
-}
-
 /* #endregion */
 
-/* Plan:
-Suche per Enter einbauen
-Teilweise zu einfach-auswahl machen
-rem responsive */
+/* #region info & community page */
+    .information-tile {
+        padding-top: var(--gap-m);
+        margin-bottom: var(--gap-l);
+        align-items: center;
+        gap: var(--gap-m);
+        justify-items: start;
+    }
+
+    .tile-pic-right {
+        grid-template-columns: 1fr 100px;
+        margin-right: 264px;
+        padding-left: 100px;
+    }
+
+    .tile-pic-left {
+        grid-template-columns: 100px 1fr;
+        margin-left: 264px;
+        padding-right: 100px;
+    } 
+
+    .tile-pic-right .information-tile-content {
+        order: 1;
+    }
+
+    .tile-pic-right .information-tile-pic {
+        order: 2;
+        top: 0;
+        width: 300px;
+        align-self: flex-start;
+    }
+
+    .tile-pic-left .information-tile-pic {
+        top: 0;
+        left: -200px;
+        width: 300px;
+        align-self: flex-start;
+    }
+
+    .information-tile .information-tile-content {
+        align-items: start;
+    }
+
+    .information-tile .information-tile-links {
+        justify-content: start;
+    }
+
+    .tile-without-headline {
+        padding-left: 100px;
+        padding-right: 100px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .information-tile-links button:hover {
+        scale: 105%
+    }
+}
+/* #endregion */

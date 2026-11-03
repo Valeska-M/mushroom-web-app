@@ -23,15 +23,15 @@ document.addEventListener('DOMContentLoaded', function() {
         filterPopup.classList.remove('filter-open');
     }
 
-    mobileFilterButton.addEventListener('click', () => {
+    mobileFilterButton?.addEventListener('click', () => {
         openFilterPopup();
     });
 
-    desktopFilterButton.addEventListener('click', () => {
+    desktopFilterButton?.addEventListener('click', () => {
         openFilterPopup();
     });
     
-    closeFilter.addEventListener('click', () => {
+    closeFilter?.addEventListener('click', () => {
         closeFilterPopup();
     });
     // #endregion
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.querySelector('#search-input');
     const deleteInput = document.querySelector('#delete-input');
 
-    deleteInput.addEventListener('click', () => {
+    deleteInput?.addEventListener('click', () => {
         searchInput.value="";
     });
     // #endregion
@@ -56,8 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const sizeSliderTo = document.querySelector('#size-slider-to');
 
     // set handles to correct position in the beginning
-    sizeSliderFrom.style.left = '0%';
-    sizeSliderTo.style.left = '100%';
+    if (sizeSliderFrom) {
+        sizeSliderFrom.style.left = '0%';
+    }
+    if (sizeSliderTo) {
+        sizeSliderTo.style.left = '100%';
+    }
 
     // functions and event listeners to move the slider handles
     let startX, startLeft;
@@ -116,13 +120,17 @@ document.addEventListener('DOMContentLoaded', function() {
         mushroomSize.textContent = `${size.min} - ${size.max} cm`;
     }
 
-    sizeSliderFrom.addEventListener('pointerdown', sliderPointerDown);
-    sizeSliderFrom.addEventListener('pointermove', sliderPointerMove);
-    sizeSliderFrom.addEventListener('pointerup', sliderPointerUp);
+    if (sizeSliderFrom) {
+        sizeSliderFrom.addEventListener('pointerdown', sliderPointerDown);
+        sizeSliderFrom.addEventListener('pointermove', sliderPointerMove);
+        sizeSliderFrom.addEventListener('pointerup', sliderPointerUp);
+    }
 
-    sizeSliderTo.addEventListener('pointerdown', sliderPointerDown);
-    sizeSliderTo.addEventListener('pointermove', sliderPointerMove);
-    sizeSliderTo.addEventListener('pointerup', sliderPointerUp);
+    if (sizeSliderTo) {
+        sizeSliderTo.addEventListener('pointerdown', sliderPointerDown);
+        sizeSliderTo.addEventListener('pointermove', sliderPointerMove);
+        sizeSliderTo.addEventListener('pointerup', sliderPointerUp);
+    }
     // #endregion
 
     // ==========================================================================================
@@ -133,7 +141,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let startMonth = null;
     let endMonth = null;
 
-    resetMonths.disabled = true;
+    if (resetMonths) {
+        resetMonths.disabled = true;
+    }
     
     function removeMonthClasses() {
         months.forEach (month => {
@@ -211,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
         resetMonths.disabled = true;
     }
 
-    resetMonths.addEventListener('click', resetCalendar);
+    resetMonths?.addEventListener('click', resetCalendar);
     // #endregion
 
     // ==========================================================================================
@@ -249,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
-    resetButton.addEventListener('click', resetFilter);
+    resetButton?.addEventListener('click', resetFilter);
     // #endregion
 
     // ==========================================================================================
@@ -260,24 +270,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainNavigation = document.querySelector('#main-navigation');
 
     function mediaChange() {
-        if (isMobile.matches) { 
-            // turn transitions off that are only needed in desktop mode
-            mainNavigation.style.transition = 'none';
-            // turn transitions for mobile mode back on after short time
-            setTimeout(() => filterPopup.style.transition = 'var(--transition-on)', 800);
-        } else { 
-            // turn transitions off that are only needed in mobile mode 
-            filterPopup.style.transition = 'none';
-            // turn transitions for desktop mode back on after short time
-            setTimeout(() => {
-                mainNavigation.style.transition = 'var(--transition-on';
-            }, 800);
+        if (mushroomSearch) {
+            if (isMobile.matches) { 
+                // turn transitions off that are only needed in desktop mode
+                mainNavigation.style.transition = 'none';
+                // turn transitions for mobile mode back on after short time
+                setTimeout(() => filterPopup.style.transition = 'var(--transition-on)', 800);
+            } else { 
+                // turn transitions off that are only needed in mobile mode 
+                filterPopup.style.transition = 'none';
+                // turn transitions for desktop mode back on after short time
+                setTimeout(() => {
+                    mainNavigation.style.transition = 'var(--transition-on';
+                }, 800);
+            }
         }
     }
 
     isMobile.addEventListener('change', mediaChange);
     
-    if(!isMobile.matches) {
+    if(!isMobile.matches && mushroomSearch) {
        openFilterPopup(); //start with filters open in desktop mode
     };
 
@@ -331,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
         history.pushState({}, "", url);
     }
 
-    applyFilter.addEventListener('click', () => {
+    applyFilter?.addEventListener('click', () => {
         updateSearchURL();
     });
 
@@ -441,7 +453,7 @@ document.addEventListener('DOMContentLoaded', function() {
         history.pushState({}, "", url);
     }
 
-    closeProfileButton.addEventListener('click', () => {closeProfile(true)});
+    closeProfileButton?.addEventListener('click', () => {closeProfile(true)});
 
     // handle visibility of gallery arrows
     const galleryArrowL = document.querySelector('#gallery-arrow-l');
@@ -462,7 +474,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    galleryPictureWrapper.addEventListener('scroll', handleArrowVisibility);
+    galleryPictureWrapper?.addEventListener('scroll', handleArrowVisibility);
 
     // enable scrolling by clicking on the arrows
     const scrollStep = 200;
@@ -478,8 +490,8 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryPictureWrapper.scrollLeft = Math.max(currentScrollPosition - scrollStep, 0);
     }
 
-    galleryArrowR.addEventListener('click', scrollGalleryRight);
-    galleryArrowL.addEventListener('click', scrollGalleryLeft);
+    galleryArrowR?.addEventListener('click', scrollGalleryRight);
+    galleryArrowL?.addEventListener('click', scrollGalleryLeft);
 
     // change pictures in gallery zoom with arrows
     const zoomedPictureArrowL = document.querySelector('#zoomed-picture-arrow-l');
@@ -499,17 +511,17 @@ document.addEventListener('DOMContentLoaded', function() {
         zoomedPictureText.textContent = `${indexZoomedPic + 1}/${numberOfPics}`;
     }
 
-    zoomedPictureArrowL.addEventListener('click', scrollZoomedPicLeft);
-    zoomedPictureArrowR.addEventListener('click', scrollZoomedPicRight);
+    zoomedPictureArrowL?.addEventListener('click', scrollZoomedPicLeft);
+    zoomedPictureArrowR?.addEventListener('click', scrollZoomedPicRight);
 
     // change pictures in gallery zoom with touch
     let galleryPointerDownX = 0;
     
-    zoomedPictureView.addEventListener('pointerdown', (e) => {
+    zoomedPictureView?.addEventListener('pointerdown', (e) => {
         galleryPointerDownX = e.clientX;
     });
 
-    zoomedPictureView.addEventListener('pointerup', (e) => {
+    zoomedPictureView?.addEventListener('pointerup', (e) => {
         const diffX = e.clientX - galleryPointerDownX;
         if (diffX > 50) {
             scrollZoomedPicLeft();
@@ -522,7 +534,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let galleryWheelBlocked = false;
     let galleryWheelTimeout;
     
-    zoomedPictureView.addEventListener('wheel', (e) => {
+    zoomedPictureView?.addEventListener('wheel', (e) => {
         if (galleryWheelBlocked) {
             clearTimeout(galleryWheelTimeout);
             galleryWheelTimeout = setTimeout(() => {galleryWheelBlocked = false;}, 200);
@@ -539,7 +551,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // close gallery zoom
     const zoomedPictureClose = document.querySelector('#zoomed-picture-close');
-    zoomedPictureClose.addEventListener('click', () => {
+    zoomedPictureClose?.addEventListener('click', () => {
         zoomedPictureView.hidden = true;
         body.classList.remove('no-scroll');
     })
@@ -601,14 +613,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // load page depending on query parameters
-    async function loadPage(firstLoad = false) {
+    async function loadSearchPage(firstLoad = false) {
         const queryParams = new URLSearchParams(window.location.search);
         const mushroomId = queryParams.get("pilz");
         if (firstLoad) {
             await loadMushroomData();
             createAllTiles();
         }
-        console.log("Params: ", queryParams, " , ID: ", mushroomId);
         if (mushroomId && allMushrooms[mushroomId]) {
             openProfile(mushroomId);
         } else {
@@ -616,12 +627,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    loadPage(true);
+    if (mushroomSearch) { // so the code only gets executed on index.html
+        loadSearchPage(true);
+    }
 
     // reload page in case of popstate
     window.addEventListener('popstate', () => {
-        console.log("loadPage");
-        loadPage();
+        if (mushroomSearch) { // so the code only gets executed on index.html
+            loadSearchPage(true);
+        }
     })
 
     // #endregion
