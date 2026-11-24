@@ -3,8 +3,8 @@ The website I am revamping, [original page](https://123pilzsuche.de/) is well kn
 Check out my current version of the page: [new page](https://valeska-m.github.io/mushroom-web-app/)
 
 ![screenshot search](assets/images/screenshot_search.jpg)
-![mobile](assets/images/screenshot_search.jpg)
-![screenshot profile](assets/images/screenshot_profile)
+![mobile](assets/images/mobile.gif)
+![screenshot profile](assets/images/screenshot_profile.jpg)
 
 ## Tech Stack
 HTML, CSS, Vanilla JavaScript, Adobe InDesign
