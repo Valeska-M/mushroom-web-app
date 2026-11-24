@@ -2,6 +2,10 @@
 The website I am revamping, [original page](https://123pilzsuche.de/) is well known and widely used among mushroom hunters to identify and find out more about species. Therefore I am working on a responsive and modernized version that improves the clarity and usability. In addition to the programming, I revised the structure of the pages, standardized all graphics and designed a new text logo. 
 Check out my current version of the page: [new page](https://valeska-m.github.io/mushroom-web-app/)
 
+![screenshot search](assets/images/screenshot_search.jpg)
+![mobile](assets/images/screenshot_search.jpg)
+![screenshot profile](assets/images/screenshot_profile)
+
 ## Tech Stack
 HTML, CSS, Vanilla JavaScript, Adobe InDesign
 

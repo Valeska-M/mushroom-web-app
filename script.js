@@ -634,7 +634,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // reload page in case of popstate
     window.addEventListener('popstate', () => {
         if (mushroomSearch) { // so the code only gets executed on index.html
-            loadSearchPage(true);
+            loadSearchPage();
         }
     })
 
